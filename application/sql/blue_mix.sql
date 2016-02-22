@@ -27,7 +27,7 @@ CREATE TABLE `category` (
   `category` varchar(45) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,37 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Nature',1),(2,'Animals',1),(3,'Cultural Events',1),(4,'Sports',1);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comments` varchar(45) DEFAULT NULL,
+  `updated_by` varchar(45) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `event_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_comments_event1_idx` (`event_id`),
+  CONSTRAINT `fk_comments_event1` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comments`
+--
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES (1,'dsfwerwr','1',1,1),(14,'sdsd','1',1,1),(15,'','1',1,1),(16,'','1',1,1),(17,'','1',1,1),(18,'','1',1,1),(19,'','1',1,1),(20,'','1',1,1),(21,'wrwer','1',1,1),(22,'wrwerwqeq2eqwe','1',1,1),(23,'dfgdg','1',1,1),(24,'dfgdgwerwe','1',1,1),(25,'dfgdgwerwe','1',1,1),(26,'dsfsdf','1',1,1),(27,'dsfsdf','1',1,1),(28,'dfsdf','1',1,1),(29,'sdfdsf','1',1,1);
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -47,13 +77,14 @@ DROP TABLE IF EXISTS `event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `event` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `from_date` date DEFAULT NULL,
   `to_date` date DEFAULT NULL,
   `address` varchar(125) DEFAULT NULL,
   `comments` text,
   `description` varchar(45) DEFAULT NULL,
+  `subject` text,
   `month_id` int(11) NOT NULL,
   `seasons_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL,
@@ -70,10 +101,10 @@ CREATE TABLE `event` (
   KEY `fk_event_region1_idx` (`region_id`),
   CONSTRAINT `fk_event_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_month1` FOREIGN KEY (`month_id`) REFERENCES `month` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_region1` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_seasons1` FOREIGN KEY (`seasons_id`) REFERENCES `seasons` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_event_state1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_event_region1` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_event_state1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +113,37 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
+INSERT INTO `event` VALUES (1,2,'0000-00-00','0000-00-00','asdasd','sadsad','sadad','sadsad',2,1,1,2,1,'2016-02-22 17:56:15',NULL,NULL),(2,1,'0000-00-00','0000-00-00','sdsad','asdasdsa','sadasd','sadasdsa',1,1,1,1,1,'2016-02-22 19:47:29',NULL,NULL),(3,2,'0000-00-00','0000-00-00','asdsad','asdasd','dsadad','sada',5,2,1,2,1,'2016-02-22 20:21:01',NULL,NULL);
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `file_upload`
+--
+
+DROP TABLE IF EXISTS `file_upload`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `file_upload` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_name` varchar(45) DEFAULT NULL,
+  `path` varchar(45) DEFAULT NULL,
+  `size` varchar(45) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `event_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_file_upload_event1_idx` (`event_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `file_upload`
+--
+
+LOCK TABLES `file_upload` WRITE;
+/*!40000 ALTER TABLE `file_upload` DISABLE KEYS */;
+INSERT INTO `file_upload` VALUES (1,'enquiryfreightvas.png','/var/www/html/photoop/public/uploads/','259',1,1),(2,'enquiry_freightvascreate.png','/var/www/html/photoop/public/uploads/','150479',1,NULL),(3,'warehouselclcreate.png','/var/www/html/photoop/public/uploads/','73088',1,NULL);
+/*!40000 ALTER TABLE `file_upload` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -123,14 +184,14 @@ DROP TABLE IF EXISTS `month`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `month` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `month` varchar(45) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `seasons_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_month_seasons1_idx` (`seasons_id`),
   CONSTRAINT `fk_month_seasons1` FOREIGN KEY (`seasons_id`) REFERENCES `seasons` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,6 +200,7 @@ CREATE TABLE `month` (
 
 LOCK TABLES `month` WRITE;
 /*!40000 ALTER TABLE `month` DISABLE KEYS */;
+INSERT INTO `month` VALUES (1,'September',1,1),(2,'October',1,1),(3,'November',1,1),(4,'December',1,2),(5,'January',1,2),(6,'February',1,2),(7,'March',1,3),(8,'April',1,3),(9,'may',1,3),(10,'June',1,4),(11,'July',1,4),(12,'August',1,4);
 /*!40000 ALTER TABLE `month` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,14 +212,14 @@ DROP TABLE IF EXISTS `region`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `region` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `region_name` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
   `state_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_region_state1_idx` (`state_id`),
   CONSTRAINT `fk_region_state1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,6 +228,7 @@ CREATE TABLE `region` (
 
 LOCK TABLES `region` WRITE;
 /*!40000 ALTER TABLE `region` DISABLE KEYS */;
+INSERT INTO `region` VALUES (1,'Canberra','1',1),(2,'Williamsdale','1',1),(3,'Naas','1',1),(4,'Uriarra','1',1),(5,'Tharwa','1',1);
 /*!40000 ALTER TABLE `region` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,6 +253,7 @@ CREATE TABLE `seasons` (
 
 LOCK TABLES `seasons` WRITE;
 /*!40000 ALTER TABLE `seasons` DISABLE KEYS */;
+INSERT INTO `seasons` VALUES (1,'Spring',1),(2,'Summer',1),(3,'Autumn',1),(4,'Winter',1);
 /*!40000 ALTER TABLE `seasons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,11 +265,11 @@ DROP TABLE IF EXISTS `state`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `state` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `state_name` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,6 +278,7 @@ CREATE TABLE `state` (
 
 LOCK TABLES `state` WRITE;
 /*!40000 ALTER TABLE `state` DISABLE KEYS */;
+INSERT INTO `state` VALUES (1,'Australian Capital Territory','1'),(2,'New South Wales','1'),(3,'Victoria','1'),(4,'Queensland','1'),(5,'South Australia','1'),(6,'Western Australia','1'),(7,'Tasmania','1'),(8,'Northern Territory','1');
 /*!40000 ALTER TABLE `state` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -226,4 +291,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-22 14:45:44
+-- Dump completed on 2016-02-22 20:53:03
