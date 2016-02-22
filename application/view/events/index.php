@@ -17,7 +17,95 @@
 	</div>
 
 </div>
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="row" style="padding-bottom: 2%">
+			<!-- Default panel -->
+			<div class="col-sm-2">
+				<label class="control-label">What?</label>
+			</div>
+			<div class="col-sm-3">
 
+				<select class="form-control" data-validate="required"
+					name="category" id="category">
+					<option value="" selected>Select the Category</option>
+                                        <?php foreach($categories as $category){?>
+                                            <option
+						value="<?php echo $category['id'];?>"><?php echo $category['category'];?></option>
+                                        <?php }?>
+									</select>
+
+			</div>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="subject" id="subject"
+					value="" data-validate="required"
+					data-message-required="Subject is required."
+					placeholder="Enter the Subject Name" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+				<label class="control-label">When?</label>
+			</div>
+			<div class="col-sm-3">
+				<select class="form-control" data-validate="required"
+					name="season_id" id="season_id">
+					<option value="" selected>Select the Season</option>
+                                        <?php foreach($seasons as $season){?>
+                                            <option
+						value="<?php echo $season['id'];?>"><?php echo $season['season_name'];?></option>
+                                        <?php }?>
+									</select>
+
+			</div>
+			<div class="col-sm-3">
+				<select class="form-control" data-validate="required" name="month"
+					id="month">
+					<option value="" selected>Select the Month</option>
+                                        <?php foreach($months as $month){?>
+                                            <option
+						value="<?php echo $month['id'];?>"><?php echo $month['month'];?></option>
+                                        <?php }?>
+									</select>
+
+			</div>
+		</div>
+		</br>
+		<div class="row">
+			<!-- Default panel -->
+			<div class="col-sm-2">
+				<label class="control-label">Where?</label>
+			</div>
+			<div class="col-sm-3">
+				<select class="form-control" data-validate="required"
+					name="state_id" id="state_id">
+					<option value="" selected>Select the State</option>
+                                        <?php foreach($states as $state){?>
+                                            <option
+						value="<?php echo $state['id'];?>"><?php echo $state['state_name'];?></option>
+                                        <?php }?>
+									</select>
+
+			</div>
+			<div class="col-sm-3">
+				<select class="form-control" data-validate="required"
+					name="region_id" id="region_id">
+					<option value="" selected>Select the Region</option>
+                                        <?php foreach($resions as $resion){?>
+                                            <option
+						value="<?php echo $resion['id'];?>"><?php echo $resion['region_name'];?></option>
+                                        <?php }?>
+									</select>
+
+			</div>
+			<div class="col-sm-2">
+				<input type="button" value="FILTER" name="submit" id="submit"
+					class="btn btn-blue btn-sm" onclick="eventSelect();">
+			</div>
+		</div>
+	</div>
+
+</div>
 <div class="row">
 
 	<div class="col-md-12">
@@ -28,7 +116,43 @@
 			<div class="panel-body">
 
 				<script type="text/javascript">
-                    
+				 function eventSelect()
+					{
+			     	var category=jQuery('#category').val();
+			     	var subject=jQuery('#subject').val();
+			     	var season=jQuery('#season_id').val();
+			     	var month=jQuery('#month').val();
+			     	var state=jQuery('#state_id').val();
+			     	var region=jQuery('#region_id').val();
+			     	//$("#customerListGrid").show();
+						$("#catalogsListGrid").dataTable({
+							   "destroy":true,
+			               "processing": true,
+			               "serverSide": true,                              
+			               "ajax": "/events/getAllEvents?category="+category+"&subject="+subject+"&season="+season+"&month="+month+"&state="+state+"&region="+region,
+			               ///"ajax": "/students/index?schoolId=" +schoolId,
+			                 "aLengthMenu": [
+								[20, 25, 50, 100, -1], [20, 25, 50, 100, "All"]
+			                 ],
+			                 "columns": [
+                                      {"data":"subject"},
+											{"data":"category"},
+											{"data":"region_name"},
+                                      {"data":"login"},                                            
+                                      {
+                                          "targets": 0,
+                                          "data": "id",
+                                          "render": function ( data, type, full, meta ) {
+                                          	var str = '<span class="action-links"><a href="#" onclick="showAjaxModal('+data+');"><i class="linecons-eye"></i></a>&nbsp;&nbsp;';
+                                                            str +='<a href="/events/edit?refKey='+data+'"><i class="linecons-pencil"></i></a>&nbsp;&nbsp;';       
+                                                       return str;
+                                                      }
+                                      } 
+                                    ]
+						
+						});
+								
+				}				
 					jQuery(document).ready(function($)
 					{
 						$("#catalogsListGrid").dataTable({
@@ -177,16 +301,15 @@
 					</div>
 					<div class="col-md-4">
 						<ul class="list-unstyled line-height-default">
-							<li><b>Region:</b> <span
-								class="pull-right ajax-content-admin_no">Loading...</span></li>
+							<li><b>Region:</b> <span class="pull-right ajax-content-admin_no">Loading...</span></li>
 						</ul>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-4">
 						<ul class="list-unstyled line-height-default">
-							<li><b>Descrition:</b> <span class="pull-right ajax-content-house">Loading...</span>
-							</li>
+							<li><b>Descrition:</b> <span
+								class="pull-right ajax-content-house">Loading...</span></li>
 						</ul>
 
 					</div>
@@ -234,3 +357,76 @@
 		</div>
 	</div>
 </div>
+
+
+
+<script type="text/javascript">
+				jQuery(document).ready(function($)
+				{
+					var z = 0;
+					var fileArray = new Array();
+					var selected = [];
+					var value='';
+		   	$('.fileTable tr.tableRow').each(function () {
+		        var tabledata = new Object;
+
+		        tabledata.id = $(this).find('td:eq(0)').text();
+				
+			   
+		        if ($(this).find("[id^=check]").is(':checked')) {
+		        	tabledata.checkbox = '1';
+		        	} else {
+		        	tabledata.checkbox = '0';
+		        	}
+		        
+		        tabledata.name= $(this).find('td:eq(3)').text();               
+
+		        fileArray[z] = tabledata.id;
+		        z++;
+		    });
+			    var productId = $("#product_category_id").val();
+				  $("#state_id").change(function(){
+					  var str='';
+					  str +='<option value="" selected>Select the Region</option>';
+	                  var selectedId = $("#state_id").val();
+                  
+                  $.ajax({
+                  	type: "POST",
+                    dataType: "json",
+                    url: "/events/getAllRegionByStateId", //Relative or absolute path to response.php file
+                    data: {"refKey":selectedId},
+                    success: function(data) {                                                       
+                      $.each(data,function(key,obj){                                                           
+                      str +='<option value="'+obj.id+'">'+obj.region_name+'</option>';                                                        
+                    });
+                    $("#region_id").html(str);
+                     }
+                    }); 
+                 });
+				 
+				 $("#season_id").change(function(){
+                  var str = '';
+				  str +='<option value="" selected>Select the Month</option>';
+                  var selectedId = $("#season_id").val();
+                  $.ajax({
+                  	type: "POST",
+                    dataType: "json",
+                    url: "/events/getAllMonthsBySeasonId", //Relative or absolute path to response.php file
+                    data: {"refKey":selectedId},
+                    success: function(data) {                                                       
+                      $.each(data,function(key,obj){                                                           
+                      str +='<option value="'+obj.id+'">'+obj.month+'</option>';                                                        
+                    });
+                    $("#month").html(str);
+                     }
+                    }); 
+                 });
+				 
+				 											
+			});	
+
+								
+			</script>
+
+
+

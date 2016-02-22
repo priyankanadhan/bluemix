@@ -56,7 +56,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `fk_comments_event1_idx` (`event_id`),
   CONSTRAINT `fk_comments_event1` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,'dsfwerwr','1',1,1),(14,'sdsd','1',1,1),(15,'','1',1,1),(16,'','1',1,1),(17,'','1',1,1),(18,'','1',1,1),(19,'','1',1,1),(20,'','1',1,1),(21,'wrwer','1',1,1),(22,'wrwerwqeq2eqwe','1',1,1),(23,'dfgdg','1',1,1),(24,'dfgdgwerwe','1',1,1),(25,'dfgdgwerwe','1',1,1),(26,'dsfsdf','1',1,1),(27,'dsfsdf','1',1,1),(28,'dfsdf','1',1,1),(29,'sdfdsf','1',1,1);
+INSERT INTO `comments` VALUES (1,'dsfwerwr','1',1,1),(14,'sdsd','1',1,1),(15,'','1',1,1),(16,'','1',1,1),(17,'','1',1,1),(18,'','1',1,1),(19,'','1',1,1),(20,'','1',1,1),(21,'wrwer','1',1,1),(22,'wrwerwqeq2eqwe','1',1,1),(23,'dfgdg','1',1,1),(24,'dfgdgwerwe','1',1,1),(25,'dfgdgwerwe','1',1,1),(26,'dsfsdf','1',1,1),(27,'dsfsdf','1',1,1),(28,'dfsdf','1',1,1),(29,'sdfdsf','1',1,1),(30,'sfsdfsd','1',1,5),(31,'sadadwqe','1',1,5),(32,'wqeqwrf','1',1,5),(33,'zfsafeasf','1',1,10),(34,'weqweq','1',1,10),(35,'xvfewf','1',1,10);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,7 @@ CREATE TABLE `event` (
   CONSTRAINT `fk_event_region1` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_seasons1` FOREIGN KEY (`seasons_id`) REFERENCES `seasons` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_state1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (1,2,'0000-00-00','0000-00-00','asdasd','sadsad','sadad','sadsad',2,1,1,2,1,'2016-02-22 17:56:15',NULL,NULL),(2,1,'0000-00-00','0000-00-00','sdsad','asdasdsa','sadasd','sadasdsa',1,1,1,1,1,'2016-02-22 19:47:29',NULL,NULL),(3,2,'0000-00-00','0000-00-00','asdsad','asdasd','dsadad','sada',5,2,1,2,1,'2016-02-22 20:21:01',NULL,NULL);
+INSERT INTO `event` VALUES (1,2,'0000-00-00','0000-00-00','asdasd','sadsad','sadad','1',2,1,1,2,1,'2016-02-22 17:56:15',NULL,NULL),(2,1,'0000-00-00','0000-00-00','sdsad','asdasdsa','sadasd','2',1,1,1,1,1,'2016-02-22 19:47:29',NULL,NULL),(3,2,'0000-00-00','0000-00-00','asdsad','asdasd','dsadad','3',5,2,1,2,1,'2016-02-22 20:21:01',NULL,NULL),(4,2,'2016-02-24','2016-02-24','sdfsdf','sdfsdfs','sdfsdf','dsffdsf',5,2,1,2,1,'2016-02-22 23:41:08',NULL,NULL),(5,1,'2016-02-23','2016-02-29','asdsad','asdad','asdasd','sadda',2,1,1,3,1,'2016-02-22 23:42:54',NULL,NULL),(6,1,'2016-02-10','2016-02-24','sdaasd','asdsadas','asda','sadas',5,2,1,1,1,'2016-02-22 23:44:47',NULL,NULL),(7,2,'2016-02-10','2016-02-17','sdfsdf','sdfsdf','wrwqr','sadad',10,4,1,2,1,'2016-02-22 23:45:52',NULL,NULL),(8,2,'2016-02-10','2016-02-17','sdfsdf','sdfsdf','wrwqr','sadad',10,4,1,2,1,'2016-02-22 23:48:12',NULL,NULL),(9,2,'2016-02-10','2016-02-17','sdfsdf','sdfsdf','wrwqr','sadad',10,4,1,2,1,'2016-02-22 23:48:42',NULL,NULL),(10,2,'2016-02-10','2016-02-17','sdfsdf','sdfsdf','wrwqr','10',10,4,1,2,1,'2016-02-22 23:48:56',NULL,NULL);
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,9 +131,11 @@ CREATE TABLE `file_upload` (
   `size` varchar(45) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `event_id` int(11) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_file_upload_event1_idx` (`event_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +144,7 @@ CREATE TABLE `file_upload` (
 
 LOCK TABLES `file_upload` WRITE;
 /*!40000 ALTER TABLE `file_upload` DISABLE KEYS */;
-INSERT INTO `file_upload` VALUES (1,'enquiryfreightvas.png','/var/www/html/photoop/public/uploads/','259',1,1),(2,'enquiry_freightvascreate.png','/var/www/html/photoop/public/uploads/','150479',1,NULL),(3,'warehouselclcreate.png','/var/www/html/photoop/public/uploads/','73088',1,NULL);
+INSERT INTO `file_upload` VALUES (1,'enquiryfreightvas.png','/var/www/html/photoop/public/uploads/','259',1,1,NULL,NULL),(2,'enquiry_freightvascreate.png','/var/www/html/photoop/public/uploads/','150479',1,NULL,NULL,NULL),(3,'warehouselclcreate.png','/var/www/html/photoop/public/uploads/','73088',1,NULL,NULL,NULL),(4,'glyphicons-halflings.png','/var/www/html/photoop/public/uploads/','4352',1,10,'',1),(5,'Trivalent-Brand-Identity-01.png','/var/www/html/photoop/public/uploads/','240811',1,10,'',1),(6,'Paper-Hot-Cup-Mock-Up-vol-2-400x400.jpg','/var/www/html/photoop/public/uploads/','16205',1,10,'',1);
 /*!40000 ALTER TABLE `file_upload` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-22 20:53:03
+-- Dump completed on 2016-02-23  0:01:18

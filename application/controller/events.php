@@ -1,10 +1,7 @@
 <?php
 /**
- * Class Home
+ * Class Events
  *
- * Please note:
- * Don't use the same name for class and method, as this might trigger an (unintended) __construct of the class.
- * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
 class Events extends Controller {
@@ -20,6 +17,9 @@ class Events extends Controller {
 	public function index() {
 		// if($_SESSION['user_type'] != "admin"){ header("Location:/login/index"); exit();}
 		// load views
+		$categories = $this->loadingModel->getAllCategories ();
+		$seasons = $this->loadingModel->getAllSeasons ();
+		$states = $this->loadingModel->getAllStates ();
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/events/index.php';
 		require APP . 'view/_templates/footer.php';
@@ -29,7 +29,16 @@ class Events extends Controller {
 	 * Function for Event Datatable
 	 */
 	public function getAllEvents() {
-		// if (isset($_REQUEST["draw"])) { $page = $_REQUEST["draw"]; } else { $page=1; };
+		
+		// Search Options
+		$category = isset ( $_REQUEST ['category'] ) ? (trim ( @$_REQUEST ['category'] )) : "";
+		$subject = isset ( $_REQUEST ['subject'] ) ? (trim ( @$_REQUEST ['subject'] )) : "";
+		$season = isset ( $_REQUEST ['season'] ) ? (trim ( @$_REQUEST ['season'] )) : "";
+		$month = isset ( $_REQUEST ['month'] ) ? (trim ( @$_REQUEST ['month'] )) : "";
+		$state = isset ( $_REQUEST ['state'] ) ? (trim ( @$_REQUEST ['state'] )) : "";
+		$region = isset ( $_REQUEST ['region'] ) ? (trim ( @$_REQUEST ['region'] )) : "";
+		
+		// Data Table Variables
 		$start = isset ( $_REQUEST ['start'] ) ? (trim ( @$_REQUEST ['start'] )) : "";
 		$length = isset ( $_REQUEST ['length'] ) ? (trim ( @$_REQUEST ['length'] )) : "";
 		$draw = isset ( $_REQUEST ['draw'] ) ? (trim ( @$_REQUEST ['draw'] )) : "";
@@ -58,12 +67,9 @@ class Events extends Controller {
 		$results = array ();
 		$results ['draw'] = $draw;
 		$results ['recordsTotal'] = ( int ) $this->loadingModel->getAllEventsCount ()->total;
-		$totalRecordsFiltered = $this->loadingModel->getAllEvents ( $start_from, $noOfRecordPerPage, $searchKey, $orderStr );
+		$totalRecordsFiltered = $this->loadingModel->getAllEvents ( $category, $subject, $season, $month, $state, $region, $start_from, $noOfRecordPerPage, $searchKey, $orderStr );
 		$results ['recordsFiltered'] = ( int ) $this->loadingModel->getAllEventsCount ()->total; // count($totalRecordsFiltered);
 		$results ['data'] = $totalRecordsFiltered;
-		// echo "<pre/>";
-		// print_r(json_encode($totalRecordsFiltered));
-		
 		echo json_encode ( $results );
 		exit ();
 	}
@@ -214,8 +220,12 @@ class Events extends Controller {
 		$event = $this->loadingModel->getEventById ( $refKey );
 		echo json_encode ( $event );
 	}
+	/**
+	 * Registeration Page
+	 */
 	public function register() {
-		print_r("sdfsd");exit;
-		//require APP . 'view/login/register.php';
+		print_r ( "sdfsd" );
+		exit ();
+		require APP . 'view/login/register.php';
 	}
 }

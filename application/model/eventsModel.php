@@ -16,7 +16,7 @@ class EventsModel {
 	/**
 	 * Get all songs from database
 	 */
-	public function getAllEvents($start, $limit, $searchKey, $orderStr) {
+	public function getAllEvents($category, $subject, $season, $month, $state, $region, $start, $limit, $searchKey, $orderStr) {
 		$sql = "SELECT 
                    event.id,
                     event.category_id,
@@ -42,11 +42,33 @@ class EventsModel {
 				 left join seasons as s on event.seasons_id=s.id
 				 left join state as st on event.state_id=st.id
 				 left join region as r on event.region_id=r.id
-				left join login on event.created_by=login.id";
+				left join login on event.created_by=login.id where 1 ";
 		
+		if ($category != "") {
+			$sql .= "AND event.category_id='" . $category . "'";
+		}
+		if ($subject != "") {
+			$sql .= "AND event.subject='" . $subject . "'";
+		}
+		if ($state != "") {
+			$sql .= "AND event.state_id='" . $state . "'";
+		}
+		if ($season != "") {
+			$sql .= "AND event.seasons_id='" . $season . "'";
+		}
+		if ($region != "") {
+			$sql .= "AND event.region_id='" . $region . "'";
+		}
+		if ($month != "") {
+			$sql .= "AND event.month_id='" . $month . "'";
+		}
 		if ($searchKey) {
-			$sql .= " WHERE 
-                cat.category LIKE '%" . $searchKey . "%'";
+			$sql .= " AND 
+                cat.category LIKE '%" . $searchKey . "%' OR
+                event.subject LIKE '%" . $searchKey . "%' OR
+                st.state_name LIKE '%" . $searchKey . "%' OR
+                seasons.season_name LIKE '%" . $searchKey . "%' OR
+                region.region_name LIKE '%" . $searchKey . "%' OR";
 		}
 		if ($orderStr != "") {
 			$sql .= $orderStr;
@@ -56,7 +78,7 @@ class EventsModel {
 			
 			$sql .= " LIMIT $start , $limit";
 		}
-		
+		// echo $sql;
 		$query = $this->db->prepare ( $sql );
 		// $parameters = array(':start' => $start,':limit'=> $limit);
 		$query->execute (); // $parameters);
@@ -102,6 +124,13 @@ class EventsModel {
 	 * Add Event
 	 */
 	public function add($category, $subject, $season_id, $month, $state_id, $region_id, $descrition, $from, $to, $address, $comments) {
+		if ($from != "") {
+			$from = date ( "Y-m-d", strtotime ( $from ) );
+		}
+		if ($to != "") {
+			$to = date ( "Y-m-d", strtotime ( $to ) );
+		}
+		
 		$sql = "INSERT INTO `event`
                     (category_id,
 					 subject,
@@ -155,6 +184,16 @@ class EventsModel {
 		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
 		// echo $sql;exit;
 		if ($query->execute ()) {
+			$lastId = $this->db->lastInsertId ();
+			
+			$updateSql = "UPDATE file_upload
+                    SET                    
+                    event_id = '" . $lastId . "',
+					category = ''
+                    WHERE created_by='".$_SESSION['sess_user_id']."' AND category = 'new_file'";
+			$Updatequery = $this->db->prepare ( $updateSql );
+			$Updatequery->execute ();
+			
 			return $this->db->lastInsertId ();
 		}
 	}
@@ -259,8 +298,8 @@ class EventsModel {
 		return $query->fetchAll ( PDO::FETCH_ASSOC );
 	}
 	public function fileUpload($fileName, $size, $path, $type) {
-		$sql = "insert into file_upload (`file_name`,`size`,`path`,`status`)
-						values('" . $fileName . "','" . $size . "','" . $path . "','1')";
+		$sql = "insert into file_upload (`file_name`,`size`,`path`,`status`,`category`,`created_by`)
+						values('" . $fileName . "','" . $size . "','" . $path . "','1','new_file','" . $_SESSION ['sess_user_id'] . "')";
 		$query = $this->db->prepare ( $sql );
 		
 		// useful for debugging: you can see the SQL behind above construction by using:
@@ -271,7 +310,7 @@ class EventsModel {
 		}
 	}
 	public function getAllFiles() {
-		$selectSql = "select * from file_upload";
+		$selectSql = "select * from file_upload where category='new_file' AND created_by='" . $_SESSION ['sess_user_id'] . "'";
 		$query = $this->db->prepare ( $selectSql );
 		$query->execute ();
 		return $query->fetchAll ( PDO::FETCH_ASSOC );
@@ -319,7 +358,7 @@ class EventsModel {
 		$selectSql = "select * from comments where event_id='" . $id . "'";
 		$query = $this->db->prepare ( $selectSql );
 		$query->execute ();
-		return $query->fetchAll (PDO::FETCH_ASSOC);
+		return $query->fetchAll ( PDO::FETCH_ASSOC );
 	}
 	public function addComment($id, $comment) {
 		$sql = "INSERT INTO `comments`

@@ -80,15 +80,16 @@
 			<div class="row" style="margin-top: 5px;">
 
 				<div class="col-sm-4">
-					<label class="control-label"><strong>Photos:</strong></label></div>
-					<div class="col-sm-4">
-					<?php
-					
-					foreach ( $photos as $photo ) {
-						?>
-					<img src="<?php echo  URL_UPLOADS.$photo['file_name']?>" style="width:200px;height:100px;">
-					<?php }?>
+					<label class="control-label"><strong>Photos:</strong></label>
 				</div>
+					
+					<?php
+					foreach ( $photos as $photo ) {
+						?><div class="col-sm-3">
+					<img src="<?php echo  URL_UPLOADS.$photo['file_name']?>"
+						style="width: 200px; height: 100px;"></span>
+				</div><?php }?>
+				
 
 			</div>
 		</div>
