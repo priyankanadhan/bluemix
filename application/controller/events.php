@@ -15,7 +15,7 @@ class Events extends Controller {
 	
 	/**
 	 * PAGE: index
-	 * This method handles what happens when you move to http://yourproject/home/index (which is the default page btw)
+	 * Loading the Event Index Page
 	 */
 	public function index() {
 		// if($_SESSION['user_type'] != "admin"){ header("Location:/login/index"); exit();}
@@ -26,10 +26,7 @@ class Events extends Controller {
 	}
 	
 	/**
-	 * PAGE: exampleone
-	 * This method handles what happens when you move to http://yourproject/home/exampleone
-	 * The camelCase writing is just for better readability.
-	 * The method name is case-insensitive.
+	 * Function for Event Datatable
 	 */
 	public function getAllEvents() {
 		// if (isset($_REQUEST["draw"])) { $page = $_REQUEST["draw"]; } else { $page=1; };
@@ -80,17 +77,26 @@ class Events extends Controller {
 		 * print_r($this->loadingModel->getAllProducts("",""));
 		 */
 	}
+	/**
+	 * function to add the event
+	 */
 	public function add() {
 		$message = '';
 		
-		$product_name = isset ( $_REQUEST ['product_name'] ) ? (trim ( @$_REQUEST ['product_name'] )) : "";
-		$product_model = isset ( $_REQUEST ['product_model'] ) ? (trim ( @$_REQUEST ['product_model'] )) : "";
-		$product_specification = isset ( $_REQUEST ['product_specification'] ) ? (trim ( @$_REQUEST ['product_specification'] )) : "";
-		$product_category_id = isset ( $_REQUEST ['product_category_id'] ) ? (trim ( @$_REQUEST ['product_category_id'] )) : "";
-		$active_status = isset ( $_REQUEST ['active_status'] ) ? (trim ( @$_REQUEST ['active_status'] )) : "";
+		$category = isset ( $_REQUEST ['category'] ) ? (trim ( @$_REQUEST ['category'] )) : "";
+		$subject = isset ( $_REQUEST ['subject'] ) ? (trim ( @$_REQUEST ['subject'] )) : "";
+		$season_id = isset ( $_REQUEST ['season_id'] ) ? (trim ( @$_REQUEST ['season_id'] )) : "";
+		$month = isset ( $_REQUEST ['month'] ) ? (trim ( @$_REQUEST ['month'] )) : "";
+		$state_id = isset ( $_REQUEST ['state_id'] ) ? (trim ( @$_REQUEST ['state_id'] )) : "";
+		$region_id = isset ( $_REQUEST ['region_id'] ) ? (trim ( @$_REQUEST ['region_id'] )) : "";
+		$descrition = isset ( $_REQUEST ['description'] ) ? (trim ( @$_REQUEST ['description'] )) : "";
+		$from = isset ( $_REQUEST ['from'] ) ? (trim ( @$_REQUEST ['from'] )) : "";
+		$to = isset ( $_REQUEST ['to'] ) ? (trim ( @$_REQUEST ['to'] )) : "";
+		$address = isset ( $_REQUEST ['address'] ) ? (trim ( @$_REQUEST ['address'] )) : "";
+		$comments = isset ( $_REQUEST ['comments'] ) ? (trim ( @$_REQUEST ['comments'] )) : "";
 		
 		if (isset ( $_POST ['submit'] )) {
-			$lastId = $this->loadingModel->add ( $product_name, $product_model, $product_category_id, $product_specification, $active_status );
+			$lastId = $this->loadingModel->add ( $category, $subject, $season_id, $month, $state_id, $region_id, $descrition, $from, $to, $address, $comments );
 			
 			if ($lastId) {
 				$message = "Event successfully added!";
@@ -101,12 +107,34 @@ class Events extends Controller {
 			}
 		}
 		
-		$categories = $this->loadingModel->getAllCategoriesFromProducts ();
+		$categories = $this->loadingModel->getAllCategories ();
+		$seasons = $this->loadingModel->getAllSeasons ();
+		$states = $this->loadingModel->getAllStates ();
+		$tableValues = $this->loadingModel->getAllFiles ();
 		// load views
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/events/add.php';
 		require APP . 'view/_templates/footer.php';
 	}
+	/**
+	 * function to get the Month By season Id
+	 */
+	public function getAllMonthsBySeasonId() {
+		$refKey = isset ( $_REQUEST ['refKey'] ) ? trim ( $_REQUEST ['refKey'] ) : "";
+		$months = $this->loadingModel->getAllMonthsBySeasonId ( $refKey );
+		echo json_encode ( $months );
+	}
+	/**
+	 * function to get the Region By State
+	 */
+	public function getAllRegionByStateId() {
+		$refKey = isset ( $_REQUEST ['refKey'] ) ? trim ( $_REQUEST ['refKey'] ) : "";
+		$regions = $this->loadingModel->getAllRegionByStateId ( $refKey );
+		echo json_encode ( $regions );
+	}
+	/**
+	 * Function to update the Event
+	 */
 	public function edit() {
 		// if($_SESSION['user_type'] != "admin"){ header("Location:/login/index"); exit();}
 		$refKey = isset ( $_REQUEST ['refKey'] ) ? trim ( $_REQUEST ['refKey'] ) : "";
@@ -139,5 +167,26 @@ class Events extends Controller {
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/products/edit.php';
 		require APP . 'view/_templates/footer.php';
+	}
+	public function FileUpload() {
+		$fileName = $_FILES ['file'] ['name'];
+		$string = $fileName [0];
+		$size = $_FILES ['file'] ['size'];
+		$imageName = $fileName;
+		$type = $_FILES ['file'] ['type'];
+		$date = date ( 'Y:M:D' );
+		$target_dir = getcwd () . "/uploads/";
+		$target_file = $target_dir . basename ( $_FILES ["file"] ["name"] );
+		if (! $target_dir) {
+			echo "Sorry, your file was not uploaded.";
+			// if everything is ok, try to upload file
+		} else {
+			if (move_uploaded_file ( $_FILES ["file"] ["tmp_name"], $target_file )) {
+				$res = $this->loadingModel->fileUpload ( $fileName, $size, $target_dir, $type );
+				echo $res;
+			} else {
+				echo "Sorry, there was an error uploading your file.";
+			}
+		}
 	}
 }

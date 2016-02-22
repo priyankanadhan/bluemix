@@ -109,33 +109,39 @@ class EventsModel {
 	/**
 	 * Add Event
 	 */
-	public function add($product_name, $product_model, $product_category_id, $product_specification, $active_status) {
-		$sql = "INSERT INTO `product`
-                    (product_name,
-					 product_model,
-					 product_category_id,
-					 product_specification,
-					 active_status,
-                     last_updated_date,
-                     last_updated_by)
+	public function add($category, $subject, $season_id, $month, $state_id, $region_id, $descrition, $from, $to, $address, $comments) {
+		$sql = "INSERT INTO `event`
+                    (category,
+					 subject,
+					 seasons_id,
+					 month_id,
+					 state_id,region_id
+                     description,
+                     from_date,to_date,address,comments)
                 VALUES           
-                    (:name,
-					:model,
-					:category_id,
-					:specification,
-					:status,
-                    NOW(),
-                    :userid)";
+                    (:category,
+					:subject,
+					:seasons_id,
+					:month_id,
+					:state_id,
+                    :region_id,
+                    :description,:from_date,:to_date,:address,:comments)";
 		
 		$query = $this->db->prepare ( $sql );
 		
 		$parameters = array (
-				':name' => $product_name,
-				':model' => $product_model,
-				':category_id' => $product_category_id,
-				':specification' => $product_specification,
-				':status' => $active_status,
-				':userid' => $_SESSION ['sess_user_id'] 
+				':category' => $product_name,
+				':subject' => $product_model,
+				':seasons_id' => $product_category_id,
+				':month_id' => $product_specification,
+				':state_id' => $active_status,
+				':region_id' => $active_status,
+				':description' => $active_status,
+				':from_date' => $active_status,
+				':to_date' => $active_status,
+				':comments' => $active_status,
+				'created_date' => NOW (),
+				':created_by' => $_SESSION ['sess_user_id'] 
 		);
 		
 		// useful for debugging: you can see the SQL behind above construction by using:
@@ -174,5 +180,94 @@ class EventsModel {
 		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
 		// print_r($query->execute($parameters));exit;
 		return $query->execute ( $parameters );
+	}
+	public function getAllCategories() {
+		$sql = "SELECT
+                    *
+                 FROM category where status='1'";
+		$query = $this->db->prepare ( $sql );
+		// $parameters = array(':start' => $start,':limit'=> $limit);
+		$query->execute (); // $parameters);
+		                    
+		// fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+		                    // core/controller.php! If you prefer to get an associative array as the result, then do
+		                    // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
+		                    // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+		return $query->fetchAll ( PDO::FETCH_ASSOC );
+	}
+	public function getAllSeasons() {
+		$sql = "SELECT
+                    *
+                 FROM seasons where status='1'";
+		$query = $this->db->prepare ( $sql );
+		// $parameters = array(':start' => $start,':limit'=> $limit);
+		$query->execute (); // $parameters);
+		                    
+		// fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+		                    // core/controller.php! If you prefer to get an associative array as the result, then do
+		                    // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
+		                    // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+		return $query->fetchAll ( PDO::FETCH_ASSOC );
+	}
+	public function getAllMonthsBySeasonId($id) {
+		$sql = "SELECT
+                    *
+                 FROM month where seasons_id='" . $id . "' AND status='1'";
+		$query = $this->db->prepare ( $sql );
+		
+		$query->execute ();
+		
+		// fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+		// core/controller.php! If you prefer to get an associative array as the result, then do
+		// $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
+		// $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+		return $query->fetchAll ( PDO::FETCH_ASSOC );
+	}
+	public function getAllStates() {
+		$sql = "SELECT
+                    *
+                 FROM state where status='1'";
+		$query = $this->db->prepare ( $sql );
+		
+		$query->execute ();
+		
+		// fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+		// core/controller.php! If you prefer to get an associative array as the result, then do
+		// $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
+		// $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+		return $query->fetchAll ( PDO::FETCH_ASSOC );
+	}
+	public function getAllRegionByStateId($id) {
+		$sql = "SELECT
+                    *
+                 FROM region where state_id='" . $id . "' AND status='1'";
+		$query = $this->db->prepare ( $sql );
+		
+		$query->execute ();
+		
+		// fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+		// core/controller.php! If you prefer to get an associative array as the result, then do
+		// $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
+		// $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+		return $query->fetchAll ( PDO::FETCH_ASSOC );
+	}
+	public function fileUpload($fileName, $size, $path, $type) {
+		$sql = "insert into file_upload (`file_name`,`size`,`path`,`status`)
+						values('" . $fileName . "','" . $size . "','" . $path . "','1')";
+		$query = $this->db->prepare ( $sql );
+		print_r ( $query );
+		exit ();
+		// useful for debugging: you can see the SQL behind above construction by using:
+		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
+		// echo $sql;exit;
+		if ($query->execute ()) {
+			return $this->db->lastInsertId ();
+		}
+	}
+	public function getAllFiles() {
+		$selectSql = "select * from file_upload";
+		$query = $this->db->prepare ( $selectSql );
+		$query->execute ();
+		return $query->fetchAll ( PDO::FETCH_ASSOC );
 	}
 }
