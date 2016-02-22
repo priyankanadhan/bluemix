@@ -1,0 +1,83 @@
+[25-Jul-2015 16:48:57 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:48:57 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:48:58 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:48:58 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:48:58 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:48:58 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:48:58 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:48:58 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:48:59 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:48:59 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:48:59 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:48:59 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:48:59 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:48:59 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:49:02 UTC] PHP Fatal error:  Can't use method return value in write context in /home/expedux/public_html/currents_store/application/model/customersModel.php on line 44
+[25-Jul-2015 16:49:04 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:49:04 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:49:04 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:49:04 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:49:04 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:49:04 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:38 UTC] PHP Fatal error:  Can't use method return value in write context in /home/expedux/public_html/currents_store/application/model/customersModel.php on line 44
+[25-Jul-2015 16:51:39 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:39 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:39 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:39 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:39 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:39 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:53 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:53 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:54 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:54 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:54 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:54 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:54 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:54 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:54 UTC] PHP Fatal error:  Can't use method return value in write context in /home/expedux/public_html/currents_store/application/model/customersModel.php on line 44
+[25-Jul-2015 16:51:55 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:55 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:55 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:55 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:51:55 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:51:55 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:16 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/expedux/public_html/currents_store/application/model/customersModel.php on line 45
+[25-Jul-2015 16:53:17 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:17 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:18 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:18 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:18 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:18 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:37 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:37 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:38 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:38 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:38 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:38 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:38 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:38 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:40 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:40 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:40 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:40 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:40 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:40 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index: message in /home/expedux/public_html/currents_store/application/view/customers/add.php on line 24
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined variable: categories in /home/expedux/public_html/currents_store/application/view/customers/add.php on line 85
+[25-Jul-2015 16:53:45 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/expedux/public_html/currents_store/application/view/customers/add.php on line 85
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined variable: categories in /home/expedux/public_html/currents_store/application/view/customers/add.php on line 98
+[25-Jul-2015 16:53:45 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/expedux/public_html/currents_store/application/view/customers/add.php on line 98
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:45 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:46 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:46 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:46 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:46 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
+[25-Jul-2015 16:53:46 UTC] PHP Notice:  Undefined index:  in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 88
+[25-Jul-2015 16:53:46 UTC] PHP Notice:  Undefined index: user_type in /home/expedux/public_html/currents_store/application/view/_templates/header.php on line 89
