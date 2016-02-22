@@ -8,7 +8,7 @@
 <meta name="description" content="Blue Mix Admin Panel" />
 <meta name="author" content="" />
 
-<title>Photo Op</title>
+<title>Blue Mix</title>
 
 <!--link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic"-->
 <link rel="stylesheet"
@@ -117,23 +117,6 @@
 					<li><a href="/events/index" alt="Products - Admin"
 						title="Products - Admin"> <i class="linecons-star"></i> <span
 							class="title">Events</span>
-					</a></li>
-					
-                    <li><a href="/customers/index" alt="Leads"
-						title="Leads"> <i class="linecons-cog"></i> <span class="title">Leads</span>
-					</a></li>		
-					
-                    <li><a href="/builtin/incentiveCalculate"
-						alt="Incentive Calcultation For Sales Consultant"
-						title="Incentive Calcultation For Sales Consultant"> <i
-							class="linecons-photo"></i> <span class="title">Incentive
-								Calculation For Sales Consultant</span>
-					</a></li>
-					<li><a href="/builtin/incentiveCalculationForTech"
-						alt="Incentive Calcultation For Technical Support"
-						title="Incentive Calcultation For Technical Support"> <i
-							class="linecons-photo"></i> <span class="title">Incentive
-								Calculation For Technical Support</span>
 					</a></li>
 
 				</ul>

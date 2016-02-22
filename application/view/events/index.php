@@ -1,8 +1,8 @@
 <div class="page-title">
 			
 				<div class="title-env">
-					<h1 class="title">Product List</h1>
-					<p class="description">Product Management page.</p>
+					<h1 class="title">Event List</h1>
+					<p class="description">Event Management page.</p>
                     
 				</div>
 			
@@ -10,11 +10,11 @@
 			
 								<ol class="breadcrumb bc-1" >
 									<li>
-							<a href="#"><i class="fa-home"></i>Products</a>
+							<a href="#"><i class="fa-home"></i>Events</a>
 						</li>
 								
 								</ol>
-                                <a href="/products/add" class="btn btn-blue btn-lg">Add</a>
+                                <a href="/events/add" class="btn btn-blue btn-lg">Add</a>
 						
 				</div>
 				
@@ -41,10 +41,10 @@
 								[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]
                                 ],
                                "columns": [
-                                            {"data":"product_name"},
-											{"data":"product_model"},
-											{"data":"product_category_name"},
-                                            {"data":"active_status_str"},                                            
+                                            {"data":"subject"},
+											{"data":"category"},
+											{"data":"region_name"},
+                                            {"data":"login"},                                            
                                             {
                                                 "targets": 0,
                                                 "data": "product_id",
@@ -62,18 +62,18 @@
 					<table id="catalogsListGrid" class="table table-striped table-bordered" cellspacing="0" width="100%">
 						<thead>
 							<tr>
-                                <th>Name</th>
-                                <th>Model</th>
-                                <th>category Name</th>
-								<th>Status</th>
+                                <th>Subject</th>
+                                <th>Category</th>
+                                <th>Location</th>
+								<th>Event Posted By</th>
                                 <th>Actions</th>								
 							</tr>
 						</thead>					
 						<tfoot>
-								<th>Name</th>
-                                <th>Model</th>
-                                <th>category Name</th>
-								<th>Status</th>
+								<th>Subject</th>
+                                <th>Category</th>
+                                <th>Location</th>
+								<th>Event Posted By</th>
                                 <th>Actions</th>
 						</tfoot>
 					

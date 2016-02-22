@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="application/config"/>
+	<buildpathentry kind="src" path="application/controller"/>
+	<buildpathentry kind="src" path="application/core"/>
+	<buildpathentry kind="src" path="application/import_export"/>
+	<buildpathentry kind="src" path="application/libs"/>
+	<buildpathentry kind="src" path="application/model"/>
+	<buildpathentry kind="src" path="application/view/_templates"/>
+	<buildpathentry kind="src" path="application/view/30_07_15customers"/>
+	<buildpathentry kind="src" path="application/view/builtin"/>
+	<buildpathentry kind="src" path="application/view/categories"/>
+	<buildpathentry kind="src" path="application/view/customers"/>
+	<buildpathentry kind="src" path="application/view/customers-bck"/>
+	<buildpathentry kind="src" path="application/view/dashboard"/>
+	<buildpathentry kind="src" path="application/view/empdashboard"/>
+	<buildpathentry kind="src" path="application/view/employee"/>
+	<buildpathentry kind="src" path="application/view/employee-14-9"/>
+	<buildpathentry kind="src" path="application/view/employee-bck"/>
+	<buildpathentry kind="src" path="application/view/error"/>
+	<buildpathentry kind="src" path="application/view/home"/>
+	<buildpathentry kind="src" path="application/view/login"/>
+	<buildpathentry kind="src" path="application/view/products"/>
+	<buildpathentry kind="src" path="public"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
