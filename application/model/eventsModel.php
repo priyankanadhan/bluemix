@@ -321,6 +321,7 @@ class EventsModel {
                     event.category_id,
 				    event.subject,
 					cat.category,
+					event.comments,
 					event.from_date,
 					event.to_date,
                    event.address,

@@ -65,7 +65,6 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,'dsfwerwr','1',1,1),(14,'sdsd','1',1,1),(15,'','1',1,1),(16,'','1',1,1),(17,'','1',1,1),(18,'','1',1,1),(19,'','1',1,1),(20,'','1',1,1),(21,'wrwer','1',1,1),(22,'wrwerwqeq2eqwe','1',1,1),(23,'dfgdg','1',1,1),(24,'dfgdgwerwe','1',1,1),(25,'dfgdgwerwe','1',1,1),(26,'dsfsdf','1',1,1),(27,'dsfsdf','1',1,1),(28,'dfsdf','1',1,1),(29,'sdfdsf','1',1,1),(30,'sfsdfsd','1',1,5),(31,'sadadwqe','1',1,5),(32,'wqeqwrf','1',1,5),(33,'zfsafeasf','1',1,10),(34,'weqweq','1',1,10),(35,'xvfewf','1',1,10);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +112,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (1,2,'0000-00-00','0000-00-00','asdasd','sadsad','sadad','1',2,1,1,2,1,'2016-02-22 17:56:15',NULL,NULL),(2,1,'0000-00-00','0000-00-00','sdsad','asdasdsa','sadasd','2',1,1,1,1,1,'2016-02-22 19:47:29',NULL,NULL),(3,2,'0000-00-00','0000-00-00','asdsad','asdasd','dsadad','3',5,2,1,2,1,'2016-02-22 20:21:01',NULL,NULL),(4,2,'2016-02-24','2016-02-24','sdfsdf','sdfsdfs','sdfsdf','dsffdsf',5,2,1,2,1,'2016-02-22 23:41:08',NULL,NULL),(5,1,'2016-02-23','2016-02-29','asdsad','asdad','asdasd','sadda',2,1,1,3,1,'2016-02-22 23:42:54',NULL,NULL),(6,1,'2016-02-10','2016-02-24','sdaasd','asdsadas','asda','sadas',5,2,1,1,1,'2016-02-22 23:44:47',NULL,NULL),(7,2,'2016-02-10','2016-02-17','sdfsdf','sdfsdf','wrwqr','sadad',10,4,1,2,1,'2016-02-22 23:45:52',NULL,NULL),(8,2,'2016-02-10','2016-02-17','sdfsdf','sdfsdf','wrwqr','sadad',10,4,1,2,1,'2016-02-22 23:48:12',NULL,NULL),(9,2,'2016-02-10','2016-02-17','sdfsdf','sdfsdf','wrwqr','sadad',10,4,1,2,1,'2016-02-22 23:48:42',NULL,NULL),(10,2,'2016-02-10','2016-02-17','sdfsdf','sdfsdf','wrwqr','10',10,4,1,2,1,'2016-02-22 23:48:56',NULL,NULL);
+INSERT INTO `event` VALUES (1,2,'0000-00-00','0000-00-00','asdasd','sadsad','sadad','1',2,1,1,2,1,'2016-02-22 17:56:15',NULL,NULL),(2,1,'0000-00-00','0000-00-00','sdsad','asdasdsa','sadasd','2',1,1,1,1,1,'2016-02-22 19:47:29',NULL,NULL);
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,4 +292,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-23  0:01:18
+-- Dump completed on 2016-02-23  0:10:01
