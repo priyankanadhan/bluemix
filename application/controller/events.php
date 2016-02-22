@@ -66,16 +66,6 @@ class Events extends Controller {
 		
 		echo json_encode ( $results );
 		exit ();
-		
-		/*
-		 * "draw": 1,
-		 * "recordsTotal": 57,
-		 * "recordsFiltered": 57,
-		 *
-		 * $_REQUEST['draw']
-		 * echo "<pre/>";
-		 * print_r($this->loadingModel->getAllProducts("",""));
-		 */
 	}
 	/**
 	 * function to add the event
@@ -136,6 +126,7 @@ class Events extends Controller {
 	 * Function to update the Event
 	 */
 	public function edit() {
+		
 		// if($_SESSION['user_type'] != "admin"){ header("Location:/login/index"); exit();}
 		$refKey = isset ( $_REQUEST ['refKey'] ) ? trim ( $_REQUEST ['refKey'] ) : "";
 		
@@ -160,14 +151,22 @@ class Events extends Controller {
 				$message = "Unable to add the Data!";
 			}
 		}
-		$categories = $this->loadingModel->getAllCategoriesFromProducts ();
-		$products = $this->loadingModel->getProductById ( $refKey );
-		
+		// $categories = $this->loadingModel->getAllCategoriesFromProducts ();
+		$event = $this->loadingModel->getEventById ( $refKey );
+		$photos = $this->loadingModel->getPhotos ( $refKey );
+		$comments = $this->loadingModel->getComments ( $refKey );
+		foreach ( $comments as $comment ) {
+			$commentArray [] = $comment ['comments'];
+		}
+		$implode = implode ( ",", $commentArray );
 		// load views
 		require APP . 'view/_templates/header.php';
-		require APP . 'view/products/edit.php';
+		require APP . 'view/events/edit.php';
 		require APP . 'view/_templates/footer.php';
 	}
+	/**
+	 * Function for File Upload
+	 */
 	public function FileUpload() {
 		$fileName = $_FILES ['file'] ['name'];
 		$string = $fileName [0];
@@ -188,5 +187,31 @@ class Events extends Controller {
 				echo "Sorry, there was an error uploading your file.";
 			}
 		}
+	}
+	/**
+	 * Function for adding comment
+	 */
+	public function addComment() {
+		$refKey = isset ( $_POST ['refKey'] ) ? trim ( $_POST ['refKey'] ) : "";
+		
+		$comment = isset ( $_POST ['comment'] ) ? trim ( $_POST ['comment'] ) : "";
+		print_r ( $comment );
+		$addComment = $this->loadingModel->addComment ( $refKey, $comment );
+		// $categories = $this->loadingModel->getAllCategoriesFromProducts ();
+		$event = $this->loadingModel->getEventById ( $refKey );
+		$photos = $this->loadingModel->getPhotos ( $refKey );
+		
+		// load views
+		require APP . 'view/_templates/header.php';
+		require APP . 'view/events/edit.php';
+		require APP . 'view/_templates/footer.php';
+	}
+	/**
+	 * Function to get the single event
+	 */
+	public function getEventById() {
+		$refKey = isset ( $_REQUEST ['refKey'] ) ? trim ( $_REQUEST ['refKey'] ) : "";
+		$event = $this->loadingModel->getEventById ( $refKey );
+		echo json_encode ( $event );
 	}
 }

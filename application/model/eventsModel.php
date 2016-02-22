@@ -35,18 +35,12 @@ class EventsModel {
 				   event.region_id,
 				   r.region_name,
 				   event.created_by,
-				   login.login,
-                   c.comments as others_comments,
-        		CASE
-  					when product.status = 0 then 'Inactive' 
-        			when product.status = 1 then 'Active'
-        		END AS active_status_str
+				   login.login
                  FROM event
-                 left join comments as c on event.id=c.event_id
 				 left join category as cat on event.category_id=cat.id
 				 left join month as m on event.month_id=m.id
 				 left join seasons as s on event.seasons_id=s.id
-				 left join state as st on event.state_is=st.id
+				 left join state as st on event.state_id=st.id
 				 left join region as r on event.region_id=r.id
 				left join login on event.created_by=login.id";
 		
@@ -62,8 +56,6 @@ class EventsModel {
 			
 			$sql .= " LIMIT $start , $limit";
 		}
-		
-		// echo $sql;
 		
 		$query = $this->db->prepare ( $sql );
 		// $parameters = array(':start' => $start,':limit'=> $limit);
@@ -111,43 +103,58 @@ class EventsModel {
 	 */
 	public function add($category, $subject, $season_id, $month, $state_id, $region_id, $descrition, $from, $to, $address, $comments) {
 		$sql = "INSERT INTO `event`
-                    (category,
+                    (category_id,
 					 subject,
 					 seasons_id,
 					 month_id,
-					 state_id,region_id
+					 state_id,
+				     region_id,
                      description,
-                     from_date,to_date,address,comments)
+                     from_date,
+					 to_date,
+					 address,
+					 comments,
+					 created_date,
+					 created_by)
                 VALUES           
-                    (:category,
-					:subject,
-					:seasons_id,
-					:month_id,
-					:state_id,
-                    :region_id,
-                    :description,:from_date,:to_date,:address,:comments)";
+                    ('" . $category . "',
+					'" . $subject . "',
+					'" . $season_id . "',
+					'" . $month . "',
+					'" . $state_id . "',
+                    '" . $region_id . "',
+                    '" . $descrition . "',
+				    '" . $from . "',
+				    '" . $to . "',
+				    '" . $address . "',
+				    '" . $comments . "',
+				    NOW(),
+				    '" . $_SESSION ['sess_user_id'] . "')";
 		
 		$query = $this->db->prepare ( $sql );
 		
-		$parameters = array (
-				':category' => $product_name,
-				':subject' => $product_model,
-				':seasons_id' => $product_category_id,
-				':month_id' => $product_specification,
-				':state_id' => $active_status,
-				':region_id' => $active_status,
-				':description' => $active_status,
-				':from_date' => $active_status,
-				':to_date' => $active_status,
-				':comments' => $active_status,
-				'created_date' => NOW (),
-				':created_by' => $_SESSION ['sess_user_id'] 
-		);
+		/*
+		 * $parameters = array (
+		 * ':category' => $category,
+		 * ':subject' => $subject,
+		 * ':seasons_id' => $season_id,
+		 * ':month_id' => $month,
+		 * ':state_id' => $state_id,
+		 * ':region_id' => $region_id,
+		 * ':description' => $descrition,
+		 * ':from_date' => $from,
+		 * ':to_date' => $to,
+		 * ':address' => $address,
+		 * ':comments' => $comments,
+		 * ':created_date' => NOW (),
+		 * ':created_by' => $_SESSION ['sess_user_id']
+		 * );
+		 */
 		
 		// useful for debugging: you can see the SQL behind above construction by using:
 		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
 		// echo $sql;exit;
-		if ($query->execute ( $parameters )) {
+		if ($query->execute ()) {
 			return $this->db->lastInsertId ();
 		}
 	}
@@ -255,8 +262,7 @@ class EventsModel {
 		$sql = "insert into file_upload (`file_name`,`size`,`path`,`status`)
 						values('" . $fileName . "','" . $size . "','" . $path . "','1')";
 		$query = $this->db->prepare ( $sql );
-		print_r ( $query );
-		exit ();
+		
 		// useful for debugging: you can see the SQL behind above construction by using:
 		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
 		// echo $sql;exit;
@@ -269,5 +275,69 @@ class EventsModel {
 		$query = $this->db->prepare ( $selectSql );
 		$query->execute ();
 		return $query->fetchAll ( PDO::FETCH_ASSOC );
+	}
+	public function getEventById($id) {
+		$selectSql = "SELECT 
+                    event.id,
+                    event.category_id,
+				    event.subject,
+					cat.category,
+					event.from_date,
+					event.to_date,
+                   event.address,
+                   event.description,
+				   event.month_id,
+				   m.month as month,
+				   event.seasons_id,
+				   s.season_name,
+				   event.state_id,
+				   st.state_name,
+				   event.region_id,
+				   r.region_name,
+				   event.created_by,
+				   login.login,
+                   c.comments as others_comments
+                 FROM event
+                 left join comments as c on event.id=c.event_id
+				 left join category as cat on event.category_id=cat.id
+				 left join month as m on event.month_id=m.id
+				 left join seasons as s on event.seasons_id=s.id
+				 left join state as st on event.state_id=st.id
+				 left join region as r on event.region_id=r.id
+				left join login on event.created_by=login.id where event.id='" . $id . "'";
+		$query = $this->db->prepare ( $selectSql );
+		$query->execute ();
+		return $query->fetch ();
+	}
+	public function getPhotos($id) {
+		$selectSql = "select * from file_upload where event_id='" . $id . "'";
+		$query = $this->db->prepare ( $selectSql );
+		$query->execute ();
+		return $query->fetchAll ( PDO::FETCH_ASSOC );
+	}
+	public function getComments($id) {
+		$selectSql = "select * from comments where event_id='" . $id . "'";
+		$query = $this->db->prepare ( $selectSql );
+		$query->execute ();
+		return $query->fetchAll (PDO::FETCH_ASSOC);
+	}
+	public function addComment($id, $comment) {
+		$sql = "INSERT INTO `comments`
+                    (comments,
+					 status,event_id,updated_by
+					)
+                VALUES
+                    ('" . $comment . "',
+					1,
+					'" . $id . "','" . $_SESSION ['sess_user_id'] . "')";
+		
+		$query = $this->db->prepare ( $sql );
+		
+		// useful for debugging: you can see the SQL behind above construction by using:
+		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
+		// echo $sql;exit;
+		if ($query->execute ()) {
+			return $this->db->lastInsertId ();
+		}
 	}
 }

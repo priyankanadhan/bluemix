@@ -1,88 +1,208 @@
-<div class="page-title">			
+<style>
+.loginWrong {
+	color: #E81D02;
+}
+
+.member-form-inputs .row::before {
+	background: #fff none repeat scroll 0 0;
+}
+
+.member-form-inputs .row::before {
+	margin: 0 15px 10px;
+}
+</style>
+<div class="page-title">
+
 	<div class="title-env">
-		<h1 class="title">Edit Product</h1>
-		<p class="description">Interface for adding Edit Product.</p>
-	</div>			
-	<div class="breadcrumb-env">			
-		<ol class="breadcrumb bc-1" >
-			<li><a href="/catalogs/index"><i class="fa-home"></i>All Products</a>
-			</li>								
-			<li class="active"><strong>Edit Product</strong>
-			</li>
-		</ol>
+		<h1 class="title">Event Update</h1>
+		<p class="description">Interface for View/Update Event.</p>
 	</div>
-</div>            
-            <form method="post" name="product" id="product" class="validate" enctype="multipart/form-data">
-				<div class="panel panel-headerless">
-					<div class="panel-body">
-			
-						<div class="member-form-add-header">
-							<div class="row">
-                                <?php if($message){?>
-                                <div class="col-md-2 col-sm-4 pull-left-sm">
-                                    <p class="description"><?php echo $message;?></p>											
-								</div>
-                                <?php }?>
-								<div class="col-md-2 col-sm-4 pull-right-sm">
-			
-									<div class="action-buttons">
-                                        <input type="submit" class="btn btn-block btn-secondary" name="submit" value="Submit">										
-										<button type="reset" class="btn btn-block btn-gray">Reset to Default</button>
-									</div>
-			
-								</div>
-								
-							</div>
-						</div>                            
-						<div class="member-form-inputs">
-                        	<div class="row">
-								<div class="col-sm-3">
-									<label class="control-label">Product Name</label>
-								</div>
-								<div class="col-sm-3">                                     
-									<input type="text" class="form-control" name="product_name" id="product_name" value="<?php echo $products->product_name;?>" data-validate="required" data-message-required="Product Name is required." placeholder="Enter the Product Name" />			
-								</div>
-                             </div>
-                             <div class="row">
-								<div class="col-sm-3">
-									<label class="control-label">Product Model</label>
-								</div>
-								<div class="col-sm-3">                                     
-									<input type="text" class="form-control" name="product_model" id="product_model" value="<?php echo $products->product_model;?>" data-validate="required" data-message-required="Product Model is required." placeholder="Enter the Product Model" />			
-								</div>
-                             </div>
-                             <div class="row">
-								<div class="col-sm-3">
-									<label class="control-label">Product Specification</label>
-								</div>
-								<div class="col-sm-3">  
-                                	<textarea  name="product_specification" id="product_specification" class="form-control" placeholder="Enter the Product Specification"><?php echo $products->product_specification;?></textarea>                               
-								</div>
-                             </div>
-                             <div class="row">
-								<div class="col-sm-3">
-									<label class="control-label">Select Category</label>
-								</div>
-								<div class="col-sm-3">                                     
-									<select class="form-control" data-validate="required" name = "product_category_id" id="product_category_id">
-										<option value="" selected>Select the Category</option>
-                                        <?php foreach($categories as $category){?>
-                                            <option value="<?php echo $category['product_category_id'];?>" <?php if($category['product_category_id'] == $catalog->product_category_id){echo "selected";} ?>><?php echo $category['product_category_name'];?></option>
-                                        <?php }?>
-									</select>			
-								</div>
-                             </div>
-                              <div class="row">  
-                                <div class="col-sm-3">
-									<label class="control-label">Status</label>
-								</div>
-								<div class="col-sm-3">
-                                   <input type="radio" name="active_status" value="1" <?php if($categories->active_status == 1){echo "checked";} ?> class="cbr cbr-info form-control "><label class="control-label">Enable</label>&nbsp;									
-									<input type="radio" name="active_status" value="0" <?php if($categories->active_status == 0){echo "checked";} ?> class="cbr cbr-info form-control "><label class="control-label">Disable</label>					
-			
-								</div>
-							</div>                        
-			
-					</div>
+
+	<div class="breadcrumb-env">
+
+		<ol class="breadcrumb bc-1">
+			<li><a href="/events/index"><i class="fa-home"></i>Events</a></li>
+
+			<li class="active"><strong>Event Update</strong></li>
+		</ol>
+
+	</div>
+
+</div>
+
+<div class="panel panel-headerless">
+	<div class="panel-body">
+		<div class="member-form-inputs">
+			<div class="row" style="margin-top: 5px;">
+				<div class="col-sm-4">
+					<label class="control-label"><strong>Category:</strong> <?php echo $event->category;?></label>
 				</div>
-			</form>
+				<div class="col-sm-4">
+					<label class="control-label"><strong>Subject:</strong> <?php echo $event->subject;?></label>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label"><strong>Season:</strong> <?php echo $event->season_name;?></label>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 5px;">
+				<div class="col-sm-4" style="border: 0px;">
+					<label class="control-label"><strong>Month:</strong> <?php echo $event->month;?></label>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label"><strong>State:</strong> <?php echo $event->state_name;?></label>
+				</div>
+				<div class="col-sm-4" style="border: 0px;">
+					<label class="control-label"><strong>Region:</strong> <?php echo $event->region_name;?></label>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 5px;">
+
+				<div class="col-sm-4">
+					<label class="control-label"><strong>Description:</strong> <?php echo $event->description;?></label>
+				</div>
+				<div class="col-sm-4" style="border: 0px;">
+					<label class="control-label"><strong>Date From:</strong> <?php echo $event->from_date;?></label>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label"><strong>Date Till:</strong> <?php echo $event->to_date;?></label>
+				</div>
+			</div>
+
+			<div class="row" style="margin-top: 5px;">
+
+				<div class="col-sm-4">
+					<label class="control-label"><strong>Address:</strong> <?php echo $event->address;?></label>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label"><strong>Comments:</strong> <?php echo $event->comments.",".$implode;?></label>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 5px;">
+
+				<div class="col-sm-4">
+					<label class="control-label"><strong>Photos:</strong></label></div>
+					<div class="col-sm-4">
+					<?php
+					
+					foreach ( $photos as $photo ) {
+						?>
+					<img src="<?php echo  URL_UPLOADS.$photo['file_name']?>" style="width:200px;height:100px;">
+					<?php }?>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<form method="post" action="/events/addComment" name="commentsForm"
+	id="commentsForm" class="validate" enctype="multipart/form-data">
+
+	<div class="panel panel-headerless">
+		<div class="col-md-2 col-sm-4 pull-right-sm">
+			<input type="button" class="btn btn-block btn-secondary"
+				name="submitNew" value="Add Comment" onClick="addComment();">
+		</div>
+		<div class="panel-body">
+			<div class="member-form-inputs">
+				<div class="row" style="margin-top: 5px;">
+
+					<div class="col-sm-4">
+						<label class="control-label"><strong>Write Comment:</strong></label>
+					</div>
+					<div class="col-sm-4">
+						<textarea type="text" class="form-control" name="comments"
+							id="comments" value="" placeholder="Enter the Comment here"></textarea>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+				jQuery(document).ready(function($)
+				{
+			    var productId = $("#product_category_id").val();
+					if(productId == '38'){
+	                	  $("#product_subcategory_id").attr("disabled",true);
+	                	  $("#product_name").attr("disabled",true);
+	                      }else{
+	                    	  $("#product_subcategory_id").attr("disabled",false);
+	                    	  $("#product_name").attr("disabled",false);
+	                      }
+				  $("#product_category_id").change(function(){
+                  var str = '';
+                  var strp='';
+                  var selectedId = $("#product_category_id").val();
+                  if(selectedId == '38'){
+                	  $("#product_subcategory_id").attr("disabled",true);
+                	  $("#product_name").attr("disabled",true);
+                      }else{
+                    	  $("#product_subcategory_id").attr("disabled",false);
+                    	  $("#product_name").attr("disabled",false);
+                      }
+                  $.ajax({
+                  	type: "POST",
+                    dataType: "json",
+                    url: "/customers/getSubCategories", //Relative or absolute path to response.php file
+                    data: {"refKey":selectedId},
+                    success: function(data) {                                                       
+                      $.each(data,function(key,obj){                                                           
+                      str +='<option value="'+obj.product_category_id+'">'+obj.product_category_name+'</option>';                                                        
+                    });
+                    $("#product_subcategory_id").html(str);
+                     }
+                    }); 
+                 });
+				 
+				 $("#product_subcategory_id").change(function(){
+                  var str = '';
+				  str +='<option value="" selected>Select the Product</option>';
+                  var selectedId = $("#product_subcategory_id").val();
+                  $.ajax({
+                  	type: "POST",
+                    dataType: "json",
+                    url: "/customers/getCategoryProducts", //Relative or absolute path to response.php file
+                    data: {"refKey":selectedId},
+                    success: function(data) {                                                       
+                      $.each(data,function(key,obj){                                                           
+                      str +='<option value="'+obj.product_id+'">'+obj.product_name+'</option>';                                                        
+                    });
+                    $("#product_name").html(str);
+                     }
+                    }); 
+                 });
+				 var selectedLeadId = $("#lead_status").val();
+					
+					if(selectedLeadId == 'closed'){
+	                	  $("#pricerow").css("display","block");
+	                      }else{
+	                    	  $("#pricerow").css("display","none");
+	                      }
+				 $("#lead_status").change(function(){
+					  var selectedLeadId = $("#lead_status").val();
+                 if(selectedLeadId == 'closed'){
+                	 $("#pricerow").css("display","block");
+                 }else{
+               	  $("#pricerow").css("display","none");
+                 }
+                });
+				 											
+			});	
+				function addComment(){
+					
+					 var comment = {'comment':$("#comments").val(),
+							         'refKey':<?php echo $_REQUEST['refKey']?>};
+					
+					$.ajax({
+						url:"<?php echo URL; ?>events/addComment",
+						data: comment,
+					    type: 'POST',
+						success: function (data) {
+						if(data){
+					    window.setTimeout(function(){location.reload()},500)
+						}
+						}
+					});
+				}									
+			</script>

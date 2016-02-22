@@ -128,7 +128,8 @@
 					</div>
 					<div class="col-sm-3">
 						<textarea type="text" class="form-control" name="description"
-							id="description" value="" placeholder="Enter the Description Name"></textarea>
+							id="description" value=""
+							placeholder="Enter the Description Name"></textarea>
 
 					</div>
 					<div class="col-sm-1">
@@ -214,6 +215,7 @@
 									file.textId = $entry.find('.textId');
 									file.uploadType = $entry.find('.uploadType');
 									file.progressBar = $entry.find('.progress-bar');
+			
 									}
 								},
 								
@@ -224,10 +226,12 @@
 								
 								success: function(file,response)
 								{
+									
 									if(response == "1"){
 										alert("unable to upload file");
 										return;
 										}else{
+										
 									file.textId.html(response);
 									file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
 									file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
@@ -298,8 +302,8 @@
 							class="btn btn-blue btn-sm" onclick="deleteFile();">
 					</div>
 				</div>
-			
-		<script>
+
+				<script>
 function deleteFile(){
 	if(confirm("Are Sure Want to delete")){
 			var z = 0;
@@ -337,8 +341,8 @@ $.ajax({
 	}
 }
 </script>
-	</div>
-	</div>
+			</div>
+		</div>
 
 </form>
 
