@@ -214,4 +214,8 @@ class Events extends Controller {
 		$event = $this->loadingModel->getEventById ( $refKey );
 		echo json_encode ( $event );
 	}
+	public function register() {
+		print_r("sdfsd");exit;
+		//require APP . 'view/login/register.php';
+	}
 }

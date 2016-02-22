@@ -43,7 +43,6 @@
 
 				</div>
 			</div>
-
 			<div class="member-form-inputs">
 				<div class="row">
 					<div class="col-sm-3">
@@ -273,10 +272,16 @@
 									<th>Status</th>
 								</tr>
 									<?php if(!empty($tableValues)){?>
-									<?php $i=1;foreach($tableValues as $data){?>
+									<?php
+										
+										$i = 1;
+										$idArray = array ();
+										foreach ( $tableValues as $data ) {
+											$idArray [] = $data ['id'];
+											?>
 										<tr class="tableRow">
-									<td class="textId" style="display: none;"><?php echo $data['id']?></td>
-									<td class="text-center"><?php echo $i?></td>
+									<td class="textId" style="display: none;"><?php echo $data['id'];?></td>
+									<td class="text-center"><?php echo $i;?></td>
 									<td><input type="checkbox" id="check" value="0" name="check"></td>
 									<td><?php echo $data['file_name']?></td>
 									<td><div class="progress progress-striped">
@@ -314,8 +319,8 @@ function deleteFile(){
         var tabledata = new Object;
 
         tabledata.id = $(this).find('td:eq(0)').text();
-
-
+		
+	    alert(tabledata.id);
         if ($(this).find("[id^=check]").is(':checked')) {
         	tabledata.checkbox = '1';
         	} else {
@@ -341,6 +346,7 @@ $.ajax({
 	}
 }
 </script>
+
 			</div>
 		</div>
 
@@ -349,6 +355,27 @@ $.ajax({
 <script type="text/javascript">
 				jQuery(document).ready(function($)
 				{
+					var z = 0;
+					var fileArray = new Array();
+					var selected = [];
+					var value='';
+		   	$('.fileTable tr.tableRow').each(function () {
+		        var tabledata = new Object;
+
+		        tabledata.id = $(this).find('td:eq(0)').text();
+				
+			   
+		        if ($(this).find("[id^=check]").is(':checked')) {
+		        	tabledata.checkbox = '1';
+		        	} else {
+		        	tabledata.checkbox = '0';
+		        	}
+		        
+		        tabledata.name= $(this).find('td:eq(3)').text();               
+
+		        fileArray[z] = tabledata.id;
+		        z++;
+		    });
 			    var productId = $("#product_category_id").val();
 				  $("#state_id").change(function(){
 					  var str='';

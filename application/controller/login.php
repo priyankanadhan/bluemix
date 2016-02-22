@@ -100,4 +100,5 @@ class Login extends Controller {
 		require APP . 'view/login/changepassword.php';
 		require APP . 'view/_templates/footer.php';
 	}
+	
 }
