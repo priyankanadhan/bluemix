@@ -47,7 +47,7 @@
 
 		<div class="row">
 
-			<div class="col-sm-6">
+			<div class="col-sm-6" style="float:right;">
 
 				<script type="text/javascript">
 					jQuery(document).ready(function($)
@@ -204,7 +204,7 @@
 				</form>
 
 				<div class="external-login" style="width: 70%; padding-left: 25%;color:red;">
-					<a href="login/gplusLogin" class="gplus"> <i class="fa-google-plus"></i> Login
+					<a href="<?php echo $authurl;?>" class="gplus"> <i class="fa-google-plus"></i> Login
 						with Google Plus
 					</a>
 
