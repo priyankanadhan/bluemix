@@ -88,9 +88,6 @@
 						</a>
 
 						<ul class="user-links list-unstyled">
-							<li class="logout-link"><a href="/login/changepassword"
-								title="Change Password"> <i class="fa-key">&nbsp;Change Password</i>
-							</a></li>
 							<li class="logout-link"><a href="/login/logout" title="Log out">
 									<i class="fa-power-off">&nbsp;Logout</i>
 							</a></li>
