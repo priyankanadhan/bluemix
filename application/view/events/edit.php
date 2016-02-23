@@ -74,7 +74,7 @@
 					<label class="control-label"><strong>Address:</strong> <?php echo $event->address;?></label>
 				</div>
 				<div class="col-sm-4">
-					<label class="control-label"><strong>Comments:</strong> <?php echo $event->comments.",".$implode;?></label>
+					<label class="control-label"><strong>Comments:</strong> <?php echo $event->comments;?></label>
 				</div>
 			</div>
 			<div class="row" style="margin-top: 5px;">
