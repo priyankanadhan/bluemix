@@ -56,7 +56,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `fk_comments_event1_idx` (`event_id`),
   CONSTRAINT `fk_comments_event1` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,'test comment','1',1,6),(2,'comment test','1',1,6);
+INSERT INTO `comments` VALUES (1,'test comment','1',1,6),(2,'comment test','1',1,6),(3,'good','1',1,2),(4,'dsfdsf','1',1,3),(5,'sadad','1',1,3),(6,'sdfdsf','1',1,3),(7,'test comment','1',1,3),(8,'ttttttttt','1',1,3),(9,'sdfsdf','1',1,7),(10,'sdsfsdsdfsd','1',1,7),(11,'test2','1',1,5),(12,'test3','1',1,5),(13,'test4','1',1,5),(14,'test5','1',1,5),(15,'scc','1',1,5),(16,'fcff','1',1,1),(17,'this is for test','1',1,1),(18,'cdsfds','1',1,1),(19,'sssssssss','1',1,1);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,7 @@ CREATE TABLE `event` (
   CONSTRAINT `fk_event_region1` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_seasons1` FOREIGN KEY (`seasons_id`) REFERENCES `seasons` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_state1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (1,2,'0000-00-00','0000-00-00','asdasd','sadsad','sadad','1',2,1,1,2,1,'2016-02-22 17:56:15',NULL,NULL),(2,1,'0000-00-00','0000-00-00','sdsad','asdasdsa','sadasd','2',1,1,1,1,1,'2016-02-22 19:47:29',NULL,NULL),(3,2,'2016-03-02','2016-02-24','sdsada','sadsadsad','for test','sdad',1,1,1,2,1,'2016-02-23 12:18:08',NULL,NULL),(4,2,'2016-03-02','2016-02-24','sdsada','sadsadsad','for test','sdad',1,1,1,2,1,'2016-02-23 12:20:13',NULL,NULL),(5,2,'2016-02-24','2016-03-13','sdfsdfsd','sdfsdffsd','wqeqwe','sdsad',1,1,1,2,1,'2016-02-23 12:22:00',NULL,NULL),(6,1,'2016-02-24','2016-02-21','sdfsdfs','fsdfsdffsfsd','dsfsf','6',5,2,1,2,1,'2016-02-23 12:23:44',NULL,NULL);
+INSERT INTO `event` VALUES (1,2,'0000-00-00','0000-00-00','asdasd','sadsad','sadad','1',2,1,1,2,1,'2016-02-22 17:56:15',NULL,NULL),(2,1,'0000-00-00','0000-00-00','sdsad','asdasdsa','sadasd','2',1,1,1,1,1,'2016-02-22 19:47:29',NULL,NULL),(3,2,'2016-03-02','2016-02-24','sdsada','sadsadsad','for test','sdad',1,1,1,2,1,'2016-02-23 12:18:08',NULL,NULL),(4,2,'2016-03-02','2016-02-24','sdsada','sadsadsad','for test','sdad',1,1,1,2,1,'2016-02-23 12:20:13',NULL,NULL),(5,2,'2016-02-24','2016-03-13','sdfsdfsd','sdfsdffsd','wqeqwe','sdsad',1,1,1,2,1,'2016-02-23 12:22:00',NULL,NULL),(6,1,'2016-02-24','2016-02-21','sdfsdfs','fsdfsdffsfsd','dsfsf','6',5,2,1,2,1,'2016-02-23 12:23:44',NULL,NULL),(7,1,'2016-02-03','2016-02-02','sfdsf','dsfds','sad','fdsgf',7,3,1,3,1,'2016-02-23 14:43:12',NULL,NULL);
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,8 +126,8 @@ DROP TABLE IF EXISTS `file_upload`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `file_upload` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `file_name` varchar(45) DEFAULT NULL,
-  `path` varchar(45) DEFAULT NULL,
+  `file_name` varchar(128) DEFAULT NULL,
+  `path` varchar(128) DEFAULT NULL,
   `size` varchar(45) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `event_id` int(11) DEFAULT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE `file_upload` (
   `created_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_file_upload_event1_idx` (`event_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +144,7 @@ CREATE TABLE `file_upload` (
 
 LOCK TABLES `file_upload` WRITE;
 /*!40000 ALTER TABLE `file_upload` DISABLE KEYS */;
-INSERT INTO `file_upload` VALUES (1,'enquiryfreightvas.png','/var/www/html/photoop/public/uploads/','259',1,1,NULL,NULL),(2,'enquiry_freightvascreate.png','/var/www/html/photoop/public/uploads/','150479',1,NULL,NULL,NULL),(3,'warehouselclcreate.png','/var/www/html/photoop/public/uploads/','73088',1,NULL,NULL,NULL),(4,'glyphicons-halflings.png','/var/www/html/photoop/public/uploads/','4352',1,10,'',1),(5,'Trivalent-Brand-Identity-01.png','/var/www/html/photoop/public/uploads/','240811',1,10,'',1),(6,'Paper-Hot-Cup-Mock-Up-vol-2-400x400.jpg','/var/www/html/photoop/public/uploads/','16205',1,10,'',1),(7,'warehouselclcreate.png','/var/www/html/photoop/public/uploads/','73088',1,3,'',1),(8,'purchaseresult.png','/var/www/html/photoop/public/uploads/','63096',1,3,'',1),(9,'purchase2.png','/var/www/html/photoop/public/uploads/','151444',1,3,'',1),(10,'sales1.png','/var/www/html/photoop/public/uploads/','147735',1,5,'',1),(11,'sales.png','/var/www/html/photoop/public/uploads/','50307',1,5,'',1),(12,'purchaseresult.png','/var/www/html/photoop/public/uploads/','63096',1,5,'',1),(13,'fvaseditresult1.png','/var/www/html/photoop/public/uploads/','167810',1,6,'',1),(14,'fvaseditresult.png','/var/www/html/photoop/public/uploads/','118943',1,6,'',1);
+INSERT INTO `file_upload` VALUES (1,'enquiryfreightvas.png','/var/www/html/photoop/public/uploads/','259',1,1,NULL,NULL),(2,'enquiry_freightvascreate.png','/var/www/html/photoop/public/uploads/','150479',1,NULL,NULL,NULL),(3,'warehouselclcreate.png','/var/www/html/photoop/public/uploads/','73088',1,NULL,NULL,NULL),(4,'glyphicons-halflings.png','/var/www/html/photoop/public/uploads/','4352',1,10,'',1),(5,'Trivalent-Brand-Identity-01.png','/var/www/html/photoop/public/uploads/','240811',1,10,'',1),(6,'Paper-Hot-Cup-Mock-Up-vol-2-400x400.jpg','/var/www/html/photoop/public/uploads/','16205',1,10,'',1),(7,'warehouselclcreate.png','/var/www/html/photoop/public/uploads/','73088',1,3,'',1),(8,'purchaseresult.png','/var/www/html/photoop/public/uploads/','63096',1,3,'',1),(9,'purchase2.png','/var/www/html/photoop/public/uploads/','151444',1,3,'',1),(10,'sales1.png','/var/www/html/photoop/public/uploads/','147735',1,5,'',1),(11,'sales.png','/var/www/html/photoop/public/uploads/','50307',1,5,'',1),(12,'purchaseresult.png','/var/www/html/photoop/public/uploads/','63096',1,5,'',1),(13,'fvaseditresult1.png','/var/www/html/photoop/public/uploads/','167810',1,6,'',1),(14,'fvaseditresult.png','/var/www/html/photoop/public/uploads/','118943',1,6,'',1),(15,'fvaseditresult.png','/var/www/html/photoop/public/uploads/','118943',1,7,'',1),(16,'fvasedit.png','/var/www/html/photoop/public/uploads/','162513',1,7,'',1),(17,'fvaseditresult.png','/var/www/html/photoop/public/uploads/','118943',1,7,'',1);
 /*!40000 ALTER TABLE `file_upload` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-23 12:38:20
+-- Dump completed on 2016-02-23 14:54:15
