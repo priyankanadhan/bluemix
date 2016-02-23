@@ -54,7 +54,10 @@
 			<div class="sidebar-menu-inner">
 
 				<header class="logo-env">
-
+					<div class="logo">
+						<a href="#" class="logo-expanded" style="color:white;width:100%;font-size:20px;"> PHOTO OP </a> <a href="#"
+							class="logo-collapsed" style="color:white;">PHOTO OP </a>
+					</div>
 					<!-- This will toggle the mobile menu and will be visible only on mobile devices -->
 					<div class="mobile-menu-toggle visible-xs">
 						<!--a href="#" data-toggle="user-info-menu">
@@ -82,9 +85,9 @@
 						<a href="#" class="user-profile"> <img
 							src="<?php echo URL_LENCO; ?>images/user-4.png" width="60"
 							height="60" class="img-circle img-corona" alt="user-pic" /> <span>
-								<strong><?php //echo $_SESSION['name']." ".$_SESSION[''];?></strong>
-								<?php if($_SESSION['sess_username']=="admin"){?>Page admin <?php } ?>
-							</span>
+								<strong><?php echo $_SESSION['name']." ".$_SESSION[''];?></strong>
+								Page admin
+						</span>
 						</a>
 
 						<ul class="user-links list-unstyled">
@@ -99,14 +102,14 @@
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					
+
 					<li><a href="/events/index" alt="Products - Admin"
 						title="Products - Admin"> <i class="linecons-star"></i> <span
 							class="title">Events</span>
 					</a></li>
 
 				</ul>
-				
+
 			</div>
 
 		</div>

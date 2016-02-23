@@ -54,7 +54,18 @@ class Login extends Controller {
 				$success = false;
 			}
 		}
+		require_once dirname ( __FILE__ ) . '/../libs/gplus-lib/vendor/autoload.php';
+		$CLIENT_ID = "101191849109-u2evcenu909egqnkgtfi8c81dctjs0bs.apps.googleusercontent.com";
+		$CLIENT_SECRET = "11OhXev3elozUKmK9NeBvGL5";
+		$REDIRECT_URI = URL . "login/gplusLogin";
+		$client = new Google_Client ();
+		$client->setClientId ( $CLIENT_ID );
+		$client->setClientSecret ( $CLIENT_SECRET );
+		$client->setRedirectUri ( $REDIRECT_URI );
+		$client->setScopes ( 'email' );
 		
+		$plus = new Google_Service_Plus ( $client );
+		$authurl = $client->createAuthUrl ();
 		// require APP . 'view/_templates/login.php';
 		require APP . 'view/login/login.php';
 		// require APP . 'view/_templates/footer.php';
@@ -123,18 +134,18 @@ class Login extends Controller {
 		}
 		
 		if (isset ( $_SESSION ['access_token'] ) && $_SESSION ['access_token']) {
-			$client->setAccessToken ( $_SESSION ['access_token'] );echo "<pre>";print_r($plus->people);exit;
+			$client->setAccessToken ( $_SESSION ['access_token'] );
+			echo "<pre>";
 			$me = $plus->people->get ( 'me' );
 			$id = $me ['id'];
-			
 			$Name = $me ['displayName'];
 			$email = $me ['emails'] [0] ['value'];
+			$login = $this->loingModel->addGoogleLogin ( $email );
 			$profile_image_url = $me ['image'] ['url'];
 			$cover_image_url = $me ['cover'] ['coverPhoto'] ['url'];
 			$profile_url = $me ['url'];
 		} else {
 			$authurl = $client->createAuthUrl ();
 		}
-		
 	}
 }
