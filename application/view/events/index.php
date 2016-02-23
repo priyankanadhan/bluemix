@@ -348,7 +348,7 @@
 					</div>
 					<div class="col-md-4">
 						<ul class="list-unstyled line-height-default">
-							<li><u><a href="#">Check Whether</a></u><span
+							<li><u><a href="#">Check Wheather</a></u><span
 								class=""></span></li>
 						</ul>
 

@@ -162,10 +162,10 @@ class Events extends Controller {
 		$event = $this->loadingModel->getEventById ( $refKey );
 		$photos = $this->loadingModel->getPhotos ( $refKey );
 		$comments = $this->loadingModel->getComments ( $refKey );
-		foreach ( $comments as $comment ) {
+		/* foreach ( $comments as $comment ) {
 			$commentArray [] = $comment ['comments'];
 		}
-		$implode = implode ( ",", $commentArray );
+		$implode = implode ( ",", $commentArray ); */
 		// load views
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/events/edit.php';

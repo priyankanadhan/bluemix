@@ -234,7 +234,7 @@
 									file.textId.html(response);
 									file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
 									file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
-									window.setTimeout(function(){location.reload()},500)
+									//window.setTimeout(function(){location.reload()},500)
 									}
 									},
 								
