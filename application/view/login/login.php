@@ -40,7 +40,7 @@
 </style>
 </head>
 <?php $imageUrl=URL."images/login_backgrd.jpg";?>
-<body class="page-body login-page login-light" style="background-image:url('public/images/login_backgrd.jpg')">
+<body class="page-body login-page login-light" style="background-image:url('/public/images/login_backgrd.jpg')">
 
 
 	<div class="login-container">
