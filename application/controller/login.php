@@ -118,13 +118,15 @@ class Login extends Controller {
 		if (isset ( $_GET ['code'] )) {
 			$client->authenticate ( $_GET ['code'] );
 			$_SESSION ['access_token'] = $client->getAccessToken ();
-			// $redirect = 'http://' . $_SERVER ['HTTP_HOST'] . $_SERVER ['PHP_SELF'];
-			// header ( 'location:' . filter_var ( $redirect, FILTER_SANITIZE_URL ) );
+			$redirect = 'http://' . $_SERVER ['HTTP_HOST'] . "/login/gplusLogin";
+			header ( 'location:' . filter_var ( $redirect, FILTER_SANITIZE_URL ) );
 		}
+		
 		if (isset ( $_SESSION ['access_token'] ) && $_SESSION ['access_token']) {
-			$client->setAccessToken ( $_SESSION ['access_token'] );
+			$client->setAccessToken ( $_SESSION ['access_token'] );echo "<pre>";print_r($plus->people);exit;
 			$me = $plus->people->get ( 'me' );
 			$id = $me ['id'];
+			
 			$Name = $me ['displayName'];
 			$email = $me ['emails'] [0] ['value'];
 			$profile_image_url = $me ['image'] ['url'];
@@ -133,5 +135,6 @@ class Login extends Controller {
 		} else {
 			$authurl = $client->createAuthUrl ();
 		}
+		
 	}
 }

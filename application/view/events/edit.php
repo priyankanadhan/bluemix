@@ -139,34 +139,6 @@
 							</div>
 						</li>
 								<?php } ?>
-                                <?php if(!empty($customerdetailsbyid)){?>							
-                                <li>
-							<div class="xe-comment-entry">
-								<a href="#" class="xe-user-img"> <i class="linecons-comment"></i>
-								</a>
-
-								<div class="xe-comment" style="width: 50%;">
-									<i><?php
-																																	$dt = new \DateTime ( $customerdetailsbyid->last_updated_date );
-																																	echo $dt->format ( 'd-M-Y  H:i:s' );
-																																	?></i>
-									<p><?php echo $customerdetailsbyid->comments; ?></p>
-								</div>
-
-								<div class="xe-comment" style="width: 50%; text-align: right;">
-										
-										<?php
-																																	/*
-																																	 * ?><strong>Followup by:</strong>
-																																	 * <p><?php $dt = new \DateTime ( $customerdetailsbyid->next_followup );
-																																	 * echo $dt->format ( 'd-M-Y' ); ?></p>	<?php
-																																	 */
-																																	?>										
-										</div>
-
-							</div>
-						</li>                     
-								<?php } ?>
 							</ul>
 
 				</div>
