@@ -62,13 +62,15 @@ class EventsModel {
 		if ($month != "") {
 			$sql .= "AND event.month_id='" . $month . "'";
 		}
+		
 		if ($searchKey) {
 			$sql .= " AND 
                 cat.category LIKE '%" . $searchKey . "%' OR
                 event.subject LIKE '%" . $searchKey . "%' OR
                 st.state_name LIKE '%" . $searchKey . "%' OR
-                seasons.season_name LIKE '%" . $searchKey . "%' OR
-                region.region_name LIKE '%" . $searchKey . "%' OR";
+                s.season_name LIKE '%" . $searchKey . "%' OR
+                login.login LIKE '%" . $searchKey . "%' OR
+                r.region_name LIKE '%" . $searchKey . "%'";
 		}
 		if ($orderStr != "") {
 			$sql .= $orderStr;
