@@ -54,18 +54,7 @@ class Login extends Controller {
 				$success = false;
 			}
 		}
-		require_once dirname ( __FILE__ ) . '/../libs/gplus-lib/vendor/autoload.php';
-		$CLIENT_ID = "101191849109-u2evcenu909egqnkgtfi8c81dctjs0bs.apps.googleusercontent.com";
-		$CLIENT_SECRET = "11OhXev3elozUKmK9NeBvGL5";
-		$REDIRECT_URI = URL . "login/gplusLogin";
-		$client = new Google_Client ();
-		$client->setClientId ( $CLIENT_ID );
-		$client->setClientSecret ( $CLIENT_SECRET );
-		$client->setRedirectUri ( $REDIRECT_URI );
-		$client->setScopes ( 'email' );
 		
-		$plus = new Google_Service_Plus ( $client );
-		$authurl = $client->createAuthUrl ();
 		// require APP . 'view/_templates/login.php';
 		require APP . 'view/login/login.php';
 		// require APP . 'view/_templates/footer.php';
