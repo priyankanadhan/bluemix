@@ -97,7 +97,84 @@
 </div>
 <form method="post" action="/events/addComment" name="commentsForm"
 	id="commentsForm" class="validate" enctype="multipart/form-data">
+	<div class="row">
+		<div class="col-sm-12">
 
+			<div class="xe-widget xe-conversations">
+				<div class="xe-bg-icon">
+					<i class="linecons-comment"></i>
+				</div>
+				<div class="xe-header">
+					<div class="xe-icon">
+						<i class="linecons-comment"></i>
+					</div>
+					<div class="xe-label">
+						<h3>
+							Comments History <small>Track Record</small>
+						</h3>
+					</div>
+				</div>
+				<div class="xe-body">
+
+					<ul class="list-unstyled">                            
+								<?php foreach ($comments as $history){?>
+								<li>
+							<div class="xe-comment-entry">
+								<a href="#" class="xe-user-img"> <i class="linecons-comment"></i>
+								</a>
+
+								<div class="xe-comment" style="width: 50%;">
+									<i><?php
+									$dt = new \DateTime ( $history->updated_date );
+									echo $dt->format ( 'd-M-Y  H:i:s' );
+									?></i>
+									<p><?php echo $history['comments']; ?></p>
+								</div>
+
+								<div class="xe-comment" style="width: 50%; text-align: right;">
+
+
+								</div>
+
+							</div>
+						</li>
+								<?php } ?>
+                                <?php if(!empty($customerdetailsbyid)){?>							
+                                <li>
+							<div class="xe-comment-entry">
+								<a href="#" class="xe-user-img"> <i class="linecons-comment"></i>
+								</a>
+
+								<div class="xe-comment" style="width: 50%;">
+									<i><?php
+																																	$dt = new \DateTime ( $customerdetailsbyid->last_updated_date );
+																																	echo $dt->format ( 'd-M-Y  H:i:s' );
+																																	?></i>
+									<p><?php echo $customerdetailsbyid->comments; ?></p>
+								</div>
+
+								<div class="xe-comment" style="width: 50%; text-align: right;">
+										
+										<?php
+																																	/*
+																																	 * ?><strong>Followup by:</strong>
+																																	 * <p><?php $dt = new \DateTime ( $customerdetailsbyid->next_followup );
+																																	 * echo $dt->format ( 'd-M-Y' ); ?></p>	<?php
+																																	 */
+																																	?>										
+										</div>
+
+							</div>
+						</li>                     
+								<?php } ?>
+							</ul>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
 	<div class="panel panel-headerless">
 		<div class="col-md-2 col-sm-4 pull-right-sm">
 			<input type="button" class="btn btn-block btn-secondary"
@@ -119,90 +196,8 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="row">
-	<div class="col-sm-12">
 
-		<div class="xe-widget xe-conversations">
-			<div class="xe-bg-icon">
-				<i class="linecons-comment"></i>
-			</div>
-			<div class="xe-header">
-				<div class="xe-icon">
-					<i class="linecons-comment"></i>
-				</div>
-				<div class="xe-label">
-					<h3>
-						Comments History <small>Track Record</small>
-					</h3>
-				</div>
-			</div>
-			<div class="xe-body">
 
-				<ul class="list-unstyled">                            
-								<?php foreach ($comments as $history){?>
-								<li>
-						<div class="xe-comment-entry">
-							<a href="#" class="xe-user-img"> <i class="linecons-comment"></i>
-							</a>
-
-							<div class="xe-comment" style="width: 50%;">
-								<i><?php
-									$dt = new \DateTime ( $history->updated_date );
-									echo $dt->format ( 'd-M-Y  H:i:s' );
-									?></i>
-								<p><?php echo $history['comments']; ?></p>
-							</div>
-
-							<div class="xe-comment" style="width: 50%; text-align: right;">
-
-								<strong>Followup by:</strong>
-								<p><?php
-									
-									$dt = new \DateTime ( $history->next_followup_date );
-									echo $dt->format ( 'd-M-Y' );
-									?></p>
-							</div>
-
-						</div>
-					</li>
-								<?php } ?>
-                                <?php if(!empty($customerdetailsbyid)){?>							
-                                <li>
-						<div class="xe-comment-entry">
-							<a href="#" class="xe-user-img"> <i class="linecons-comment"></i>
-							</a>
-
-							<div class="xe-comment" style="width: 50%;">
-								<i><?php
-																																	$dt = new \DateTime ( $customerdetailsbyid->last_updated_date );
-																																	echo $dt->format ( 'd-M-Y  H:i:s' );
-																																	?></i>
-								<p><?php echo $customerdetailsbyid->comments; ?></p>
-							</div>
-
-							<div class="xe-comment" style="width: 50%; text-align: right;">
-										
-										<?php
-																																	/*
-																																	 * ?><strong>Followup by:</strong>
-																																	 * <p><?php $dt = new \DateTime ( $customerdetailsbyid->next_followup );
-																																	 * echo $dt->format ( 'd-M-Y' ); ?></p>	<?php
-																																	 */
-																																	?>										
-										</div>
-
-						</div>
-					</li>                     
-								<?php } ?>
-							</ul>
-
-			</div>
-
-		</div>
-
-	</div>
-</div>
 </form>
 <script type="text/javascript">
 				jQuery(document).ready(function($)

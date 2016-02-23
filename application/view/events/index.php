@@ -12,7 +12,7 @@
 			<li><a href="#"><i class="fa-home"></i>Events</a></li>
 
 		</ol>
-		<a href="/events/add" class="btn btn-blue btn-lg">Add</a>
+		<a href="/events/add" class="btn btn-blue btn-lg">Add Event</a>
 
 	</div>
 
