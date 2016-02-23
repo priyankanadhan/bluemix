@@ -87,7 +87,7 @@
 					foreach ( $photos as $photo ) {
 						?><div class="col-sm-3">
 					<img src="<?php echo  URL_UPLOADS.$photo['file_name']?>"
-						style="width: 200px; height: 100px;"></span>
+						style="width: 200px; height: 100px;padding-top:20px;">
 				</div><?php }?>
 				
 

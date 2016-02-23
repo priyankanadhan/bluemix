@@ -251,4 +251,18 @@ class Events extends Controller {
 		}
 		require APP . 'view/login/register.php';
 	}
+	public function deleteFile() {
+		$datas = json_decode ( file_get_contents ( 'php://input' ), true );
+		foreach ( $datas as $data ) {
+			if ($data ['checkbox'] == '1') {
+				$res = $this->loadingModel->delete ( $data ['id'] );
+				if ($res != "") {
+					$dir = $res->path;
+					$name = $res->name;
+					unlink ( $dir . "/" . $name );
+				}
+			}
+		}
+		echo "file deleted successfully";
+	}
 }

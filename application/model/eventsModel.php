@@ -402,4 +402,18 @@ class EventsModel {
 			return $this->db->lastInsertId ();
 		}
 	}
+	public function delete($id) {
+		$selectSql = "select * from file_upload where id='" . $id . "'";
+		$query1 = $this->db->prepare ( $selectSql );
+		$query1->execute ();
+		$count = $query1->fetch ();
+		$sql = "delete from file_upload where id='" . $id . "'";
+		$query = $this->db->prepare ( $sql );
+		// useful for debugging: you can see the SQL behind above construction by using:
+		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
+		// echo $sql;exit;
+		if ($query->execute ()) {
+			return $count;
+		}
+	}
 }

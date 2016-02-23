@@ -234,6 +234,7 @@
 									file.textId.html(response);
 									file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
 									file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+									$("#fileRow").load(location.href + " #fileRow");
 									//window.setTimeout(function(){location.reload()},500)
 									}
 									},
@@ -252,7 +253,7 @@
 					</script>
 
 				<br />
-				<div class="row">
+				<div class="row" id="fileRow">
 					<div class="col-sm-3 text-center">
 
 						<div id="advancedDropzone" class="droppable-area">Drop Files Here</div>
@@ -320,7 +321,7 @@ function deleteFile(){
 
         tabledata.id = $(this).find('td:eq(0)').text();
 		
-	    alert(tabledata.id);
+	    
         if ($(this).find("[id^=check]").is(':checked')) {
         	tabledata.checkbox = '1';
         	} else {
@@ -339,7 +340,8 @@ $.ajax({
     type: 'POST',
 	success: function (data) {
 	if(data){
-     window.setTimeout(function(){location.reload()},500)
+		$("#fileRow").load(location.href + " #fileRow");
+    /// window.setTimeout(function(){location.reload()},500)
 	}
 	}
 });
