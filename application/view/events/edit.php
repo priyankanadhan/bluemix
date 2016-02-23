@@ -133,7 +133,7 @@
 				</div>
 				<div class="xe-label">
 					<h3>
-						Lead History <small>Track Record</small>
+						Comments History <small>Track Record</small>
 					</h3>
 				</div>
 			</div>
