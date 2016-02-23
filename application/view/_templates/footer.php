@@ -12,7 +12,7 @@
 					<!-- Add your copyright text here -->
 					<div class="footer-text">
 						&copy; 2015 
-						<strong>Currents Admin</strong> 
+						<strong>Blue Mix Admin</strong> 
 						Powered by <a href="http://rootsbridge.com" target="_blank">RootsBridge</a>
 					</div>
 					

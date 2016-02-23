@@ -169,15 +169,11 @@
 
 				<!-- Add class "fade-in-effect" for login form effect -->
 				<form method="post" role="form" id="login"
-					class="login-form fade-in-effect" action="/login/index">
+					class="login-form fade-in-effect" action="/events/register">
 
 					<div class="login-header">
-						<a href="#" class="logo"> <img
-							src="<?php echo URL_LENCO; ?>images/logo-white-bg@2x.png" alt=""
-							width="80" /> <!--span>log in</span-->
-						</a>
-
-						<p>Dear user, log in to Photo Op !</p>
+						
+						<p>Dear user, Please Register !</p>
 					</div>
 
 
@@ -197,21 +193,21 @@
 							autocomplete="off" />
 					</div>
 					<div class="form-group">
-						<label class="control-label" for="passwd">Password</label> <input
+						<label class="control-label" for="passwd">Confirm Password</label> <input
 							type="password" class="form-control" name="conpasswd"
 							id="conpasswd" autocomplete="off" />
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary  btn-block text-left">
+						<button type="submit" name="registerSubmit" class="btn btn-primary  btn-block text-left">
 							<i class="fa-lock"></i> Submit
 						</button>
 
 					</div>
                     <?php
-																				if ($success == false) {
+																				if ($message) {
 																					?>
 					<div class="loginWrong">
-						Credentials are Wrong!
+						<?php echo $message;?>!
 
 						<!--div class="info-links">
 							<a href="#">ToS</a> -
@@ -224,7 +220,7 @@
 				</form>
 
 				<!-- External login -->
-				<div class="external-login">
+				<!-- <div class="external-login">
 					<a href="#" class="facebook">
 						<i class="fa-facebook"></i>
 						Facebook Login
@@ -241,7 +237,7 @@
 						Login with Google Plus
 					</a>
 					 
-				</div>
+				</div> -->
 
 			</div>
 

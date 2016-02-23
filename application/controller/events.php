@@ -8,6 +8,7 @@ class Events extends Controller {
 	function __construct() {
 		parent::__construct ();
 		$this->loadingModel = $this->loadModel ( 'eventsModel' );
+		$this->loingModel = $this->loadModel ( 'loginModel' );
 	}
 	
 	/**
@@ -224,8 +225,30 @@ class Events extends Controller {
 	 * Registeration Page
 	 */
 	public function register() {
-		print_r ( "sdfsd" );
-		exit ();
+		if (isset ( $_POST ['registerSubmit'] )) {
+			
+			$username = isset ( $_REQUEST ['username'] ) ? (trim ( @$_REQUEST ['username'] )) : "";
+			$email = isset ( $_REQUEST ['email'] ) ? (trim ( @$_REQUEST ['email'] )) : "";
+			$passwd = isset ( $_REQUEST ['passwd'] ) ? (trim ( @$_REQUEST ['passwd'] )) : "";
+			$conpasswd = isset ( $_REQUEST ['conpasswd'] ) ? (trim ( @$_REQUEST ['conpasswd'] )) : "";
+			
+			if ($passwd != $conpasswd) {
+				$message = "Password Doesnot Match";
+			}
+			
+			$register = $this->loadingModel->addRegister ( $username, $email, $passwd );
+			if ($register) {
+				print_r($register);
+				$userFullDetails = $this->loingModel->getUserDetails ( $register );
+				session_regenerate_id ();
+				$_SESSION ['sess_user_id'] = $userFullDetails->id;
+				$_SESSION ['sess_username'] = $userFullDetails->login;
+				$_SESSION ['email'] = $userFullDetails->email;
+				session_write_close ();
+				header ( 'Location:/events/index' );
+				exit ();
+			}
+		}
 		require APP . 'view/login/register.php';
 	}
 }

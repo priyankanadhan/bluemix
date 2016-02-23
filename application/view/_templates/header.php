@@ -55,17 +55,6 @@
 
 				<header class="logo-env">
 
-					<!-- logo -->
-					<div class="logo">
-						<a href="#" class="logo-expanded"> <img
-							src="<?php echo URL_LENCO; ?>images/logo@2x.png" width="80"
-							alt="" />
-						</a> <a href="#" class="logo-collapsed"> <img
-							src="<?php echo URL_LENCO; ?>images/logo-collapsed@2x.png"
-							width="40" alt="" />
-						</a>
-					</div>
-
 					<!-- This will toggle the mobile menu and will be visible only on mobile devices -->
 					<div class="mobile-menu-toggle visible-xs">
 						<!--a href="#" data-toggle="user-info-menu">

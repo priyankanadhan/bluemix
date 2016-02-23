@@ -40,21 +40,17 @@ class Application {
 			
 			// print_r($sessId);
 			
-			if ($this->url_controller == "login") {
-				if ($sessId == "" && ($this->url_action) != "index") {
-					session_destroy ();
-					header ( 'Location: /login/index' );
-					exit ();
-				}
-			}
+			
 			if ($this->url_controller != "login") {
-				if ($sessId == '' || $sessName == '') {
-					session_destroy ();
-					header ( 'Location: /login/index' );
-					exit ();
+				if ($this->url_controller && $this->url_action != "register") {
+					if ($sessId == '' || $sessName == '') {
+						session_destroy ();
+						header ( 'Location: /login/index' );
+						exit ();
+					}
 				}
 			} // exit;
-			 
+			  
 			// if so, then load this file and create this controller
 			  // example: if controller would be "car", then this line would translate into: $this->car = new car();
 			require APP . 'controller/' . $this->url_controller . '.php';

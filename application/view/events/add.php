@@ -8,7 +8,7 @@
 	<div class="breadcrumb-env">
 
 		<ol class="breadcrumb bc-1">
-			<li><a href="/catalogs/index"><i class="fa-home"></i>All Events</a></li>
+			<li><a href="/events/index"><i class="fa-home"></i>All Events</a></li>
 
 			<li class="active"><strong>Add Event</strong></li>
 		</ol>

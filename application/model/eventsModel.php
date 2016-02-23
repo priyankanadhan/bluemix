@@ -190,11 +190,11 @@ class EventsModel {
                     SET                    
                     event_id = '" . $lastId . "',
 					category = ''
-                    WHERE created_by='".$_SESSION['sess_user_id']."' AND category = 'new_file'";
+                    WHERE created_by='" . $_SESSION ['sess_user_id'] . "' AND category = 'new_file'";
 			$Updatequery = $this->db->prepare ( $updateSql );
 			$Updatequery->execute ();
 			
-			return $this->db->lastInsertId ();
+			return true;
 		}
 	}
 	
@@ -375,7 +375,29 @@ class EventsModel {
 		
 		// useful for debugging: you can see the SQL behind above construction by using:
 		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
-		// echo $sql;exit;
+		
+		if ($query->execute ()) {
+			return $this->db->lastInsertId ();
+		}
+	}
+	public function addRegister($username, $email, $passwd) {
+		$text = md5 ( uniqid ( rand (), true ) );
+		$salt = substr ( $text, 0, 3 );
+		$hash = hash ( 'sha256', $salt . hash ( 'sha256', $passwd ) );
+		$sql = "INSERT INTO `login`
+                    (login,
+					 password,salt,email,last_login,status
+					)
+                VALUES
+                    ('" . $username . "',
+					'" . $hash . "',
+					'" . $salt . "',
+					'" . $email . "',NOW(),1)";
+		
+		$query = $this->db->prepare ( $sql );
+		// useful for debugging: you can see the SQL behind above construction by using:
+		// echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters); exit();
+		
 		if ($query->execute ()) {
 			return $this->db->lastInsertId ();
 		}
