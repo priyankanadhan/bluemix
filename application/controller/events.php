@@ -162,10 +162,12 @@ class Events extends Controller {
 		$event = $this->loadingModel->getEventById ( $refKey );
 		$photos = $this->loadingModel->getPhotos ( $refKey );
 		$comments = $this->loadingModel->getComments ( $refKey );
-		/* foreach ( $comments as $comment ) {
-			$commentArray [] = $comment ['comments'];
-		}
-		$implode = implode ( ",", $commentArray ); */
+		/*
+		 * foreach ( $comments as $comment ) {
+		 * $commentArray [] = $comment ['comments'];
+		 * }
+		 * $implode = implode ( ",", $commentArray );
+		 */
 		// load views
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/events/edit.php';
@@ -232,21 +234,24 @@ class Events extends Controller {
 			$passwd = isset ( $_REQUEST ['passwd'] ) ? (trim ( @$_REQUEST ['passwd'] )) : "";
 			$conpasswd = isset ( $_REQUEST ['conpasswd'] ) ? (trim ( @$_REQUEST ['conpasswd'] )) : "";
 			
-			if ($passwd != $conpasswd) {
+			if (! filter_var ( $email, FILTER_VALIDATE_EMAIL )) {
+				$message = "Email is not valid";
+			} elseif ($passwd != $conpasswd) {
 				$message = "Password Doesnot Match";
-			}
-			
-			$register = $this->loadingModel->addRegister ( $username, $email, $passwd );
-			if ($register) {
-				print_r($register);
-				$userFullDetails = $this->loingModel->getUserDetails ( $register );
-				session_regenerate_id ();
-				$_SESSION ['sess_user_id'] = $userFullDetails->id;
-				$_SESSION ['sess_username'] = $userFullDetails->login;
-				$_SESSION ['email'] = $userFullDetails->email;
-				session_write_close ();
-				header ( 'Location:/events/index' );
-				exit ();
+			} else {
+				
+				$register = $this->loadingModel->addRegister ( $username, $email, $passwd );
+				if ($register) {
+					
+					$userFullDetails = $this->loingModel->getUserDetails ( $register );
+					session_regenerate_id ();
+					$_SESSION ['sess_user_id'] = $userFullDetails->id;
+					$_SESSION ['sess_username'] = $userFullDetails->login;
+					$_SESSION ['email'] = $userFullDetails->email;
+					session_write_close ();
+					header ( 'Location:/events/index' );
+					exit ();
+				}
 			}
 		}
 		require APP . 'view/login/register.php';
