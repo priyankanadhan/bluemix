@@ -418,4 +418,16 @@ class EventsModel {
 			return $count;
 		}
 	}
+	public function userCheck($username) {
+		$selectSql = "select * from login where login='" . $username . "'";
+		$query = $this->db->prepare ( $selectSql );
+		$query->execute ();
+		return $query->fetch ();
+	}
+	public function userEmailCheck($email) {
+		$selectSql = "select * from login where email='" . $email . "'";
+		$query = $this->db->prepare ( $selectSql );
+		$query->execute ();
+		return $query->fetch ();
+	}
 }

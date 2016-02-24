@@ -37,6 +37,10 @@
 .loginWrong {
 	color: #E81D02;
 }
+
+.errMsg {
+	color: #E81D02;
+}
 </style>
 </head>
 <body class="page-body login-page login-light">
@@ -169,10 +173,10 @@
 
 				<!-- Add class "fade-in-effect" for login form effect -->
 				<form method="post" role="form" id="login"
-					class="login-form fade-in-effect" action="/events/register">
+					class="login-form fade-in-effect">
 
 					<div class="login-header">
-						
+
 						<p>Dear user, Please Register !</p>
 					</div>
 
@@ -193,12 +197,14 @@
 							autocomplete="off" />
 					</div>
 					<div class="form-group">
-						<label class="control-label" for="passwd">Confirm Password</label> <input
-							type="password" class="form-control" name="conpasswd"
+						<label class="control-label" for="passwd">Confirm Password</label>
+						<input type="password" class="form-control" name="conpasswd"
 							id="conpasswd" autocomplete="off" />
 					</div>
 					<div class="form-group">
-						<button type="submit" name="registerSubmit" class="btn btn-primary  btn-block text-left">
+						<button type="button" name="registerSubmit"
+							class="btn btn-primary  btn-block text-left"
+							onClick="register();">
 							<i class="fa-lock"></i> Submit
 						</button>
 
@@ -216,7 +222,7 @@
 
 					</div>
                     <?php } ?>
-	
+					<div class="errMsg"></div>
 				</form>
 
 				<!-- External login -->
@@ -244,9 +250,28 @@
 		</div>
 
 	</div>
-
-
-
+	<script type="text/javascript">
+function register(){
+	
+				var username=jQuery('#username').val();
+				var email=jQuery('#email').val();
+				var passwd=jQuery('#passwd').val();
+            	var conpasswd=jQuery('#conpasswd').val();
+            	var urlnew= "<?php echo URL;?>events/index";
+            	jQuery.ajax({
+             		type : "POST",
+             		url :"<?php echo URL; ?>events/registerCheck/?username=" +username+"&email="+email+"&passwd="+passwd+"&conpasswd="+conpasswd,
+             		//dataype:"json",
+             		success:function(response){
+                 	if(response == "true"){
+                 		window.location.href = urlnew;
+                 	}else{
+                 	$(".errMsg").html(response);
+                 	}
+             		}
+             		});
+				}
+</script>
 	<!-- Bottom Scripts -->
 	<script src="<?php echo URL_LENCO; ?>js/bootstrap.min.js"></script>
 	<script src="<?php echo URL_LENCO; ?>js/TweenMax.min.js"></script>

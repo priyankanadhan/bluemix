@@ -227,34 +227,47 @@ class Events extends Controller {
 	 * Registeration Page
 	 */
 	public function register() {
-		if (isset ( $_POST ['registerSubmit'] )) {
+		require APP . 'view/login/register.php';
+	}
+	/**
+	 * Function for register Check
+	 */
+	public function registerCheck() {
+		$username = isset ( $_REQUEST ['username'] ) ? (trim ( @$_REQUEST ['username'] )) : "";
+		$email = isset ( $_REQUEST ['email'] ) ? (trim ( @$_REQUEST ['email'] )) : "";
+		$passwd = isset ( $_REQUEST ['passwd'] ) ? (trim ( @$_REQUEST ['passwd'] )) : "";
+		$conpasswd = isset ( $_REQUEST ['conpasswd'] ) ? (trim ( @$_REQUEST ['conpasswd'] )) : "";
+		$userExt = $this->loadingModel->userCheck ( $username );
+		$emailExt = $this->loadingModel->userEmailCheck ( $email );
+		if (! filter_var ( $email, FILTER_VALIDATE_EMAIL )) {
+			echo "Email is not valid";
+			exit ();
+		} elseif ($passwd != $conpasswd) {
+			echo "Password Doesnot Match";
+			exit ();
+		} elseif ($userExt) {
+			echo "User Already Exist";
+			exit ();
+		} elseif ($emailExt) {
+			echo "Email Already exist";
+			exit ();
+		} else {
 			
-			$username = isset ( $_REQUEST ['username'] ) ? (trim ( @$_REQUEST ['username'] )) : "";
-			$email = isset ( $_REQUEST ['email'] ) ? (trim ( @$_REQUEST ['email'] )) : "";
-			$passwd = isset ( $_REQUEST ['passwd'] ) ? (trim ( @$_REQUEST ['passwd'] )) : "";
-			$conpasswd = isset ( $_REQUEST ['conpasswd'] ) ? (trim ( @$_REQUEST ['conpasswd'] )) : "";
-			
-			if (! filter_var ( $email, FILTER_VALIDATE_EMAIL )) {
-				$message = "Email is not valid";
-			} elseif ($passwd != $conpasswd) {
-				$message = "Password Doesnot Match";
-			} else {
+			$register = $this->loadingModel->addRegister ( $username, $email, $passwd );
+			if ($register) {
 				
-				$register = $this->loadingModel->addRegister ( $username, $email, $passwd );
-				if ($register) {
-					
-					$userFullDetails = $this->loingModel->getUserDetails ( $register );
-					session_regenerate_id ();
-					$_SESSION ['sess_user_id'] = $userFullDetails->id;
-					$_SESSION ['sess_username'] = $userFullDetails->login;
-					$_SESSION ['email'] = $userFullDetails->email;
-					session_write_close ();
-					header ( 'Location:/events/index' );
-					exit ();
-				}
+				$userFullDetails = $this->loingModel->getUserDetails ( $register );
+				session_regenerate_id ();
+				$_SESSION ['sess_user_id'] = $userFullDetails->id;
+				$_SESSION ['sess_username'] = $userFullDetails->login;
+				$_SESSION ['email'] = $userFullDetails->email;
+				session_write_close ();
+				echo "true";
+				exit ();
+				// header ( 'Location:/events/index' );
+				// exit ();
 			}
 		}
-		require APP . 'view/login/register.php';
 	}
 	public function deleteFile() {
 		$datas = json_decode ( file_get_contents ( 'php://input' ), true );

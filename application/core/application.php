@@ -40,9 +40,8 @@ class Application {
 			
 			// print_r($sessId);
 			
-			
 			if ($this->url_controller != "login") {
-				if ($this->url_controller && $this->url_action != "register") {
+				if ($this->url_controller && $this->url_action != "register" && $this->url_action != "registerCheck") {
 					if ($sessId == '' || $sessName == '') {
 						session_destroy ();
 						header ( 'Location: /login/index' );
